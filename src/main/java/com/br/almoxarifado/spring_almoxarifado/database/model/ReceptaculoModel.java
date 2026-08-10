@@ -2,6 +2,9 @@ package com.br.almoxarifado.spring_almoxarifado.database.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.EmbeddedColumnNaming;
+
+import java.util.List;
 
 @Table(name="receptaculos")
 @Getter
@@ -17,13 +20,20 @@ public class ReceptaculoModel {
     @Column(name = "receptaculo_id")
     private Integer id;
 
-    private static Integer tamanho = 50;
+    private static final Integer CAPACIDADE = 50;
 
-    @OneToOne
-    @JoinTable(
-            name = "receptaculos_corredores",
-            joinColumns = @JoinColumn(name = "receptaculo_id"),
-            inverseJoinColumns = @JoinColumn(name = "corredor_id")
-    )
-    private CorredorModel corredor;
+    @Column(nullable = false)
+    private Integer quantidadeAtual = 0;
+
+    @ManyToOne
+    @JoinColumn(name= "peca_id")
+    private PecaModel peca;
+
+    public int getCapacidadeDisponivel() {
+        return CAPACIDADE - quantidadeAtual;
+    }
+
+    public Integer getCapacidade() {
+        return CAPACIDADE;
+    }
 }

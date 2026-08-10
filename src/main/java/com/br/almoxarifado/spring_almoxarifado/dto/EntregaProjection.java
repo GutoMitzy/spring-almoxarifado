@@ -7,18 +7,11 @@ import java.util.Set;
 
 public interface EntregaProjection {
     Integer getEntregaId();
-
     String getFornecedor();
-
     LocalDate getDataEntrega();
-
     Boolean getEntregue();
-
     Integer getPecaId();
-
     String getDescricao();
-
     String getNome();
-
-    Integer getEstoque();
+    Integer getQuantidade();
 }

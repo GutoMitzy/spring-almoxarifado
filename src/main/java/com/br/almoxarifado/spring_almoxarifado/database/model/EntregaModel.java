@@ -5,9 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -35,5 +33,14 @@ public class EntregaModel {
             joinColumns = @JoinColumn (name = "entrega_id"),
             inverseJoinColumns = @JoinColumn (name = "peca_id")
     )
-    private Set<PecaModel> pecas = new HashSet<>();
+    private List<PecaModel> pecas = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "entregas_quantidades",
+            joinColumns = @JoinColumn(name = "entrega_id")
+    )
+    @Column(name = "quantidade")
+    @OrderColumn(name = "posicao")
+    private List<Integer> quantidades;
 }

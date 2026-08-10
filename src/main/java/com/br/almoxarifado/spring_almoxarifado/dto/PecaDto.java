@@ -17,5 +17,5 @@ public class PecaDto {
     private String descricao;
 
     @NotNull
-    private Integer estoque;
+    private Integer quantidade;
 }

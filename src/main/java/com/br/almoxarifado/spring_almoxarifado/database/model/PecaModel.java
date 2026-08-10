@@ -23,13 +23,6 @@ public class PecaModel {
 
     private String nome;
     private String descricao;
-    private Integer estoque;
+    private Integer quantidade;
 
-    @OneToOne
-    @JoinTable(
-            name = "pecas_receptaculos",
-            joinColumns = @JoinColumn(name = "peca_id"),
-            inverseJoinColumns = @JoinColumn(name = "receptaculo_id")
-    )
-    private ReceptaculoModel receptaculo;
 }

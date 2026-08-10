@@ -29,7 +29,7 @@ public class PecaService {
         pecaRepository.save(PecaModel.builder()
                         .nome(pecaDto.getNome())
                         .descricao(pecaDto.getDescricao())
-                        .estoque(pecaDto.getEstoque())
+                        .quantidade(pecaDto.getQuantidade())
                 .build());
     }
 }

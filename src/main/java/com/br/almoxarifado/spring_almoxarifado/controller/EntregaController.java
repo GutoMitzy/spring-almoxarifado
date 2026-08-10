@@ -28,7 +28,7 @@ public class EntregaController {
 
     @PatchMapping("/{entregaId}/concluir")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void concluirEntrega(@PathVariable Integer entregaId) {
+    public void concluirEntrega(@Valid @PathVariable Integer entregaId) {
         entregaService.concluirEntrega(entregaId);
     }
 
