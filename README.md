@@ -91,17 +91,12 @@ A estrutura do projeto possui essas camadas separadas dentro do pacote principal
 ## Nível 1 — Completar a API
 
 * [ ] Implementar CRUD completo para os recursos existentes
-* [ ] Adicionar validações com Bean Validation
 * [ ] Padronizar respostas de erro
-* [ ] Implementar paginação em todos os endpoints aplicáveis
 * [ ] Implementar filtros e ordenação
-* [ ] Separar DTOs de `Request` e `Response`
 * [ ] Aprimorar documentação com OpenAPI/Swagger
 
 ## Nível 2 — Controle de Estoque
 
-* [ ] Criar entidade `Estoque`
-* [ ] Criar entidade `MovimentacaoEstoque`
 * [ ] Implementar entrada de estoque
 * [ ] Implementar saída de estoque
 * [ ] Implementar transferência entre localizações
@@ -129,8 +124,6 @@ A estrutura do projeto possui essas camadas separadas dentro do pacote principal
 * [ ] Implementar controle de acesso baseado em roles (RBAC)
 * [ ] Criar roles `ADMIN`, `ALMOXARIFE`, `SUPERVISOR` e `USUARIO`
 * [ ] Configurar permissões por operação
-* [ ] Implementar refresh token
-* [ ] Implementar expiração e renovação de tokens
 * [ ] Implementar auditoria de operações
 * [ ] Registrar usuário responsável pelas alterações
 * [ ] Registrar data e hora das operações
@@ -156,7 +149,6 @@ A estrutura do projeto possui essas camadas separadas dentro do pacote principal
 * [ ] Versionar alterações do schema
 * [ ] Revisar índices do banco
 * [ ] Revisar relacionamentos e constraints
-* [ ] Otimizar consultas do JPA
 * [ ] Implementar Specifications para filtros dinâmicos
 
 ## Nível 7 — Produção e Infraestrutura
@@ -211,4 +203,3 @@ A estrutura do projeto possui essas camadas separadas dentro do pacote principal
 * [ ] Implementar controle de indicadores do almoxarifado
 * [ ] Implementar análise de consumo
 * [ ] Implementar previsão de necessidade de reposição
-
