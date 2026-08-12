@@ -2,6 +2,8 @@ server:
   port: 8082
 
 spring:
+  profile:
+    active: dev
   application:
     name: spring-almoxarifado
   datasource:
@@ -17,5 +19,5 @@ spring:
         format_sql: true
 
 jwt:
+  key: ${JWT_KEY:FrMomuJGGw3ewpb8hYZrLaUciGKPMSTDT6oYrzd6tuqSl6EHIIB7T0p1Y9WErzZLa5OPjn_0MX2MMhIwSQbxZXgBgf0BF0lbVgLbnhyqAw4Ru3iVHhTirodzYRJP9A2hIkDKxgZ6xj8UYtzGcB09tWCG4PADwatd-6ZC-wG9BIrCLVXF8cvg1Puo45FJz0OlQKpWv5c5Hu2tOMLfBFHLDIdU3FZ5iVDfH1LJ1G5oiyMIpXR9j-TNhkf_4aerrgJzc6cEHnh5seQA2N4gJia5XjGLCgwf0cLWn79upnsrqEFUUWJhQwl75WpEUKU6R0xTTEEBo0eLeXLJpXqlEqz9FMRH4qqmX_BS--Qp}
   expiration: ${JWT_EXPIRATION:900000} #15minutos
-  key: ${JWT_KEY:CqB8d6 axnuffpv54_CJF!&I0ujimBdcc$aaZF 6F$_p3xsma&Mr3yHJ&Er9lZ=nK_97z!JIFrwbopH&Ie!a9iNaybuTA8R9qUY 21$Cbu5f1WA6eSNZ5qyfI#0sr!EIl&by!z$9FEvXTcixa5C_t5XMrx-TuKTHI FKbGi37d72hUX_Fe$2ixFPHzpq9PvCnDu#NINpak5U t5CU=y#nhODoL5Y_aahuzjxS0XKEF6&phoLs  1X9j8CiHm5FHzYwXt#a-3WQDv=XO3gqX85$8#Zy_TecBI47- 5BtsgrUEvoI9aeMIjvsQpMbZSzIRXpaV=P&OQ8szaW!K$iqn2Ro&}
