@@ -24,4 +24,6 @@ public class CorredorModel {
     @OneToMany
     @JoinColumn(name = "corredor_id")
     private List<ReceptaculoModel> receptaculos;
+
+
 }

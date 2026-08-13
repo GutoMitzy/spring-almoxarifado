@@ -28,7 +28,9 @@ public class ItemController {
 
     @GetMapping("/{categoria}")
     @ResponseStatus(HttpStatus.OK)
-    public Page<ItemProjection> findItemsByCategoria(@PathVariable String categoria, @RequestParam Integer page, @RequestParam Integer size) {
+    public Page<ItemProjection> findItemsByCategoria(@PathVariable String categoria,
+                                                     @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                     @RequestParam(required = false, defaultValue = "0") Integer size) {
         return itemService.findItemsByCategoria(categoria, page, size);
     }
 }
