@@ -2,14 +2,12 @@ server:
   port: 8082
 
 spring:
-  profile:
-    active: dev
   application:
     name: spring-almoxarifado
   datasource:
-    url: jdbc:mysql://localhost:3306/almoxarifado?createDatabaseIfNotExist=True
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://localhost:3306/almoxarifado
   jpa:
     hibernate:
       ddl-auto: update
