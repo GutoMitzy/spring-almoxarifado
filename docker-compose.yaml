@@ -1,15 +1,30 @@
 services:
   mysql_db:
     container_name: mysql
-    image: mysql:latest
+    image: mysql:8.4
     restart: always
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
     networks:
       - private_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DATABASE_PASSWORD}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+
+  mysql_db-test:
+    container_name: mysql-test
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ${DATABASE_DEV}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
 
   backend_core:
     build: .
@@ -19,18 +34,17 @@ services:
     ports:
       - "8082:8082"
     depends_on:
-      - mysql_db
+      mysql_db:
+        condition: service_healthy
     environment:
-      DATABASE_URL: jdbc:mysql://mysql_db:3306/${DATABASE_NAME}
+      DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       JWT_KEY: ${JWT_KEY}
     networks:
       - private_network
-      - public_network
 
 networks:
   private_network:
     driver: bridge
-  public_network:
-    driver: bridge
+
