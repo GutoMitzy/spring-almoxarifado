@@ -28,4 +28,11 @@ public class AuthenticationController {
     public TokenResponseDto loginAccount(@Valid @RequestBody LoginRequestDto loginRequestDto) {
         return authenticationService.loginAccount(loginRequestDto);
     }
+
+    @PatchMapping("/role/{empresa_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void changeEmpresaRole(@PathVariable Integer empresa_id,
+                                  @Valid @RequestBody String role) {
+        authenticationService.changeEmpresaRole(empresa_id, role);
+    }
 }

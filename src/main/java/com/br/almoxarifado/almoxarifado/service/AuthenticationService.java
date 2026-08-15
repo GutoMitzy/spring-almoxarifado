@@ -10,6 +10,7 @@ import com.br.almoxarifado.almoxarifado.dto.RegisterRequestDto;
 import com.br.almoxarifado.almoxarifado.dto.TokenResponseDto;
 import com.br.almoxarifado.almoxarifado.enums.RolesEnum;
 import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
+import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -68,6 +69,26 @@ public class AuthenticationService {
             throw new BadRequestException("Credenciais inválidas!");
         } catch(Exception e) {
             throw e;
+        }
+    }
+
+    public void changeEmpresaRole(Integer empresa_id, String newRole) {
+        try {
+            RolesEnum roleEnum = RolesEnum.valueOf(newRole.toUpperCase());
+
+            RoleModel role = rolesRepository.findByNome(roleEnum.name())
+                    .orElseGet(() -> rolesRepository.save(RoleModel.builder()
+                            .nome(roleEnum.name())
+                            .build()
+                    ));
+
+            EmpresaModel empresa = empresaRepository.findById(empresa_id)
+                    .orElseThrow(() -> new NotFoundException("Empresa não encontrada com id: " + empresa_id));
+
+            empresa.setRoles(Set.of(role));
+            empresaRepository.save(empresa);
+        } catch(IllegalArgumentException iae) {
+            throw new NotFoundException("Role não existente!");
         }
     }
 }

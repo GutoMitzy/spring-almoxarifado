@@ -35,6 +35,13 @@ public class ReceptaculoModel {
         this.emUso += quantidade;
     }
 
+    public void subtractQuantidade(Integer quantidade) {
+        this.emUso -= quantidade;
+        if(this.emUso <= 0) {
+            this.setItem(null);
+        }
+    }
+
     public ReceptaculoModel() {
         this.emUso = 0;
     }

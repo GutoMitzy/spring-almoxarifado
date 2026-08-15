@@ -1,6 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
+import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.service.EstoqueService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,23 +9,17 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v2/almoxarifado/entradas")
+@RequestMapping("/v2/almoxarifado/saidas")
 @RequiredArgsConstructor
 @Validated
-public class EntradaEstoqueController {
+public class SaidaEstoqueController {
 
     private final EstoqueService estoqueService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEntradaEstoque(@Valid @RequestBody EntradaEstoqueDto entradaEstoqueDto) {
-        estoqueService.createEntradaEstoque(entradaEstoqueDto);
-    }
-
-    @PatchMapping("/{id}/finish")
-    @ResponseStatus(HttpStatus.OK)
-    public void concluirEntradaEstoque(@PathVariable Integer id) {
-        estoqueService.concluirEntradaEstoque(id);
+    public void createSaidaEstoque(@Valid @RequestBody SaidaEstoqueDto saidaEstoqueDto) {
+        estoqueService.createSaidaEstoque(saidaEstoqueDto);
     }
 
 }

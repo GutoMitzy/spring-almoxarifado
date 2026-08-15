@@ -1,5 +1,6 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
+import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,13 @@ public class EstoqueModel {
 
     public void addQuantidade(Integer quantidade) {
         this.quantidade += quantidade;
+    }
+
+    public void subtractQuantidade(Integer quantidade) {
+        if(quantidade > this.quantidade) {
+            throw new BadRequestException("Não há estoque suficiente para a saída!");
+        }
+
+        this.quantidade -= quantidade;
     }
 }

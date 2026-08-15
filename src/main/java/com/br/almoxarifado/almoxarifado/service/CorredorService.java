@@ -84,6 +84,45 @@ public class CorredorService {
     }
 
     @Transactional(rollbackOn = Exception.class)
+    public void removeItemReceptaculo(CategoriaModel categoria, ItemModel item, Integer quantidadeEnviada) {
+        List<CorredorModel> corredores = corredorRepository.findByCategoria(categoria);
+
+        if (corredores.isEmpty()) {
+            throw new BadRequestException("Não foi possível encontrar corredor da categoria!");
+        }
+
+        buscaReceptaculo:
+        for (CorredorModel corredor : corredores) {
+            for (ReceptaculoModel receptaculo : corredor.getReceptaculos()) {
+                if (quantidadeEnviada <= 0) {
+                    break buscaReceptaculo;
+                }
+                if (receptaculo.getItem() == null || !receptaculo.getItem().getId().equals(item.getId())) {
+                    continue;
+                }
+
+                Integer quantidadeDisponivel = receptaculo.getEmUso();
+                if (quantidadeDisponivel <= 0) {
+                    continue;
+                }
+
+                Integer quantidadeRemover = Math.min(quantidadeDisponivel, quantidadeEnviada);
+
+                receptaculo.subtractQuantidade(quantidadeRemover);
+                quantidadeEnviada -= quantidadeRemover;
+
+                receptaculosRepository.save(receptaculo);
+            }
+        }
+
+        if (quantidadeEnviada > 0) {
+            throw new BadRequestException("Não há quantidade suficiente do item " + item.getNome() +
+                    " nos receptáculos. Quantidade restante: " + quantidadeEnviada
+            );
+        }
+    }
+
+    @Transactional(rollbackOn = Exception.class)
     public void createCorredor(CorredorDto corredorDto) {
         Integer quantidadeReceptaculos = corredorDto.getReceptaculos();
         List<ReceptaculoModel> receptaculos = new ArrayList<>();
