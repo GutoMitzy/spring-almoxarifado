@@ -9,7 +9,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/  # Endereço do Eureka Server
+      defaultZone: http://service-discover:8761/eureka/  # Endereço do Eureka Server
   instance:
     prefer-ip-address: true   # Configuração opcional, usa o IP no lugar do hostname
     hostname: notification-service      # Nome do serviço (opcional)
@@ -17,7 +17,7 @@ eureka:
 rabbitmq:
   queue:
     name: NOTIFICATION_QUEUE
-  host: localhost
+  host: rabbitmq
   username: almoxarifado
   password: almoxarifado123
-  port: 8090
+  port: 5672

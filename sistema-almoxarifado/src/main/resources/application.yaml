@@ -16,6 +16,11 @@ spring:
       hibernate:
         format_sql: true
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL do Eureka Server
+
 jwt:
   key: ${JWT_KEY}
   expiration: ${JWT_EXPIRATION:900000} #15minutos
@@ -23,3 +28,7 @@ jwt:
 rabbitmq:
   queue:
     name: NOTIFICATION_QUEUE
+  host: localhost
+  username: ${RABBITMQ_USERNAME}
+  password: ${RABBITMQ_PASSWORD}
+  port: 8090

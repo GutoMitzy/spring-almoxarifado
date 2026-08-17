@@ -1,0 +1,60 @@
+services:
+  mysql_db:
+    container_name: mysql
+    image: mysql:8.4
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - almoxarifado_network
+
+
+  mysql_db-test:
+    container_name: mysql-test
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ${DATABASE_DEV}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:4.3.4-management
+    restart: always
+    ports:
+      - "8090:5672"
+      - "15672:15672"
+    networks:
+      - almoxarifado_network
+
+  service-discover:
+    build:
+      context: ./service-discover
+    container_name: service-discover
+    restart: always
+    ports:
+      - "8761:8761"
+    networks:
+      - almoxarifado_network
+
+  notification-service:
+    build:
+      context: ./notification-service
+    container_name: notification-service
+    restart: no
+    depends_on:
+      - service-discover
+    ports:
+      - "8083:8083"
+    networks:
+      - almoxarifado_network
+
+networks:
+  almoxarifado_network:
+    driver: bridge
+

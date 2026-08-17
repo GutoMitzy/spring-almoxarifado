@@ -8,10 +8,10 @@ RUN mvn clean install -DskipTests
 
 FROM amazoncorretto:25-jdk
 
-COPY --from=build /app/target/almoxarifado-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/target/service-discover-0.0.1-SNAPSHOT.jar /app/app.jar
 
 WORKDIR /app
 
-EXPOSE 8082
+EXPOSE 8761
 
 CMD ["java", "-jar", "app.jar"]

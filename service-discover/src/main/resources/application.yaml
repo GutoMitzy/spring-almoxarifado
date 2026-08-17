@@ -6,7 +6,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: service-discover
   client:
     register-with-eureka: false  # O servidor não precisa se registrar nele mesmo
     fetch-registry: false        # O servidor não busca registros de outros servidores
