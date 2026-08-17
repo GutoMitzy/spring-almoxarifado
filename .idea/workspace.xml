@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e9cd1fcf-a410-4dbe-bbaa-54b365f425c2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/AlmoxarifadoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/config/AuthenticationConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/config/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/config/TokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/CategoriaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/CorredorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/EmpresaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/EntradaEstoqueController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/ItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/controller/SaidaEstoqueController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/CategoriaModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/CorredorModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/EmpresaModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/EntradaEstoqueModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/EstoqueModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/ItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/ItemTransporteModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/ReceptaculoModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/RoleModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/model/SaidaEstoqueModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICategoriaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICorredorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IEmpresaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IEntradaEstoqueRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IEstoqueRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IItemTransporteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IReceptaculoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IRolesRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ISaidaEstoqueRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/CategoriaDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/CorredorDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/CorredorProjection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/EmpresaDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/EntradaEstoqueDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/EntradaItemDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/ItemDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/ItemProjection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/LoginRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/RegisterRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/SaidaEstoqueDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/dto/TokenResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/enums/EntradaEstoqueStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/enums/RolesEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/exception/BadRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/exception/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/exception/EstoqueCheioException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/exception/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/CategoriaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/CorredorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/EmpresaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/EstoqueService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/ItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/br/almoxarifado/almoxarifado/service/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/br/almoxarifado/almoxarifado/AlmoxarifadoApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/br/almoxarifado/almoxarifado/controller/ItemControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/br/almoxarifado/almoxarifado/database/repository/EmpresaRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/br/almoxarifado/almoxarifado/service/ItemServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yaml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="80097950-e28a-4ce0-85f9-aaa4757bddfc" value="" />
+    </colors>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3Hrr72ycGtCylYvQ0ypCASm0LJl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AlmoxarifadoTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ItemServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Almoxarifado.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServer.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationMicroservice.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add-microservice&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Augusto/Documents/Codigos de Programas/Java/spring-almoxarifado&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Augusto\Documents\Codigos de Programas\Java\spring-almoxarifado" />
+      <recent name="C:\Users\Augusto\Documents\Codigos de Programas\Java\spring-almoxarifado\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.br.almoxarifado.almoxarifado.database.repository" />
+      <recent name="com.br.almoxarifado.almoxarifado.database.model" />
+      <recent name="com.br.almoxarifado.almoxarifado.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Almoxarifado">
+    <configuration name="AlmoxarifadoTests" type="JUnit" factoryName="JUnit">
+      <module name="almoxarifado" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <option name="PACKAGE_NAME" value="com.br.almoxarifado.almoxarifado" />
+      <option name="MAIN_CLASS_NAME" value="com.br.almoxarifado.almoxarifado.AlmoxarifadoApplicationTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmpresaRepositoryTest" type="JUnit" factoryName="JUnit">
+      <module name="almoxarifado" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <option name="PACKAGE_NAME" value="com.br.almoxarifado.almoxarifado.database.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.br.almoxarifado.almoxarifado.database.repository.EmpresaRepositoryTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemControllerTest" type="JUnit" factoryName="JUnit">
+      <module name="almoxarifado" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <option name="PACKAGE_NAME" value="com.br.almoxarifado.almoxarifado.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.br.almoxarifado.almoxarifado.controller.ItemControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemServiceTest" type="JUnit" factoryName="JUnit">
+      <module name="almoxarifado" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <option name="PACKAGE_NAME" value="com.br.almoxarifado.almoxarifado.service" />
+      <option name="MAIN_CLASS_NAME" value="com.br.almoxarifado.almoxarifado.service.ItemServiceTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="spring-almoxarifado" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="spring-almoxarifado" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Almoxarifado" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <envs>
+        <env name="DATABASE_DEV" value="almoxarifado-dev" />
+        <env name="DATABASE_NAME" value="almoxarifado" />
+        <env name="DATABASE_PASSWORD" value="almoxarifado123" />
+        <env name="DATABASE_USERNAME" value="root" />
+        <env name="RABBITMQ_USERNAME" value="almoxarifado" />
+        <env name="RABBITMQ_PASSWORD" value="almoxarifado123" />
+      </envs>
+      <module name="almoxarifado" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.br.almoxarifado.almoxarifado.AlmoxarifadoApplication" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <module name="service-discover" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.almoxarifado.service_discover.ServiceDiscoverApplication" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationMicroservice" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-26" />
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.almoxarifado.notification_service.NotificationServiceApplication" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.AlmoxarifadoTests" />
+      <item itemvalue="JUnit.EmpresaRepositoryTest" />
+      <item itemvalue="JUnit.ItemControllerTest" />
+      <item itemvalue="JUnit.ItemServiceTest" />
+      <item itemvalue="Spring Boot.NotificationMicroservice" />
+      <item itemvalue="Spring Boot.EurekaServer" />
+      <item itemvalue="Spring Boot.Almoxarifado" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9cd1fcf-a410-4dbe-bbaa-54b365f425c2" name="Changes" comment="" />
+      <created>1786636857485</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1786636857485</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

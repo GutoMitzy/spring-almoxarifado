@@ -1,0 +1,23 @@
+server:
+  port:
+    8083
+
+spring:
+  application:
+    name: notification-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # Endereço do Eureka Server
+  instance:
+    prefer-ip-address: true   # Configuração opcional, usa o IP no lugar do hostname
+    hostname: notification-service      # Nome do serviço (opcional)
+
+rabbitmq:
+  queue:
+    name: NOTIFICATION_QUEUE
+  host: localhost
+  username: almoxarifado
+  password: almoxarifado123
+  port: 8090

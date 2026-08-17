@@ -1,0 +1,63 @@
+services:
+  mysql_db:
+    container_name: mysql
+    image: mysql:8.4
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - private_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DATABASE_PASSWORD}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+
+  mysql_db-test:
+    container_name: mysql-test
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ${DATABASE_DEV}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+
+  backend_core:
+    build: .
+    container_name: almoxarifado-app
+    image: spring-almoxarifado:1.0
+    restart: no
+    ports:
+      - "8082:8082"
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      mysql_db:
+        condition: service_healthy
+
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_KEY: ${JWT_KEY}
+    networks:
+      - private_network
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:4.3.4-management
+    restart: always
+    ports:
+      - "8090:5672"
+      - "15672:15672"
+    networks:
+      - private_network
+
+networks:
+  private_network:
+    driver: bridge
+

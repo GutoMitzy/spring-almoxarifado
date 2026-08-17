@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-discover
+server:
+  port: 8761  # Porta onde o Eureka Server será executado
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false  # O servidor não precisa se registrar nele mesmo
+    fetch-registry: false        # O servidor não busca registros de outros servidores
