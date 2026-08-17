@@ -1,8 +1,6 @@
 package com.almoxarifado.notification_service.config;
 
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.config.StatelessRetryOperationsInterceptor;
@@ -30,6 +28,9 @@ public class RabbitConfig {
     @Value("${rabbitmq.port}")
     private int port;
 
+    @Value("${rabbitmq.exchange.name}")
+    private String exchangeName;
+
     @Bean
     public JacksonJsonMessageConverter jackson2JsonMessageConverter() {
         return new JacksonJsonMessageConverter();
@@ -55,5 +56,9 @@ public class RabbitConfig {
         return connectionFactory;
     }
 
+    @Bean
+    public TopicExchange createExchange() {
+        return new TopicExchange(exchangeName);
+    }
 
 }

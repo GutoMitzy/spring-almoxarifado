@@ -28,6 +28,10 @@ jwt:
 rabbitmq:
   queue:
     name: NOTIFICATION_QUEUE
+  exchange:
+    name: NOTIFICATION_EXCHANGE
+  routing:
+    key: ALMOXARIFADO_ROUTING_KEY
   host: localhost
   username: ${RABBITMQ_USERNAME}
   password: ${RABBITMQ_PASSWORD}

@@ -1,8 +1,6 @@
 package com.br.almoxarifado.almoxarifado.config;
 
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.config.StatelessRetryOperationsInterceptor;
@@ -32,6 +30,12 @@ public class RabbitConfig {
 
     @Value("${rabbitmq.queue.name}")
     private String queueName;
+
+    @Value("${rabbitmq.routing.key}")
+    private String routingKey;
+
+    @Value("${rabbitmq.exchange.name}")
+    private String exchangeName;
 
 
     @Bean
@@ -70,16 +74,25 @@ public class RabbitConfig {
 
     @Bean
     public Queue createQueue() throws Exception {
-        Queue q = QueueBuilder.durable(queueName).build();
-        amqpAdmin().declareQueue(q);
-        return q;
+        return QueueBuilder.durable(queueName).build();
+    }
+
+    @Bean
+    public TopicExchange exchange() {
+        return new TopicExchange(exchangeName);
+    }
+
+    @Bean
+    public Binding createBinding(TopicExchange exchange) throws Exception {
+        return BindingBuilder
+                .bind(createQueue())
+                .to(exchange)
+                .with(routingKey);
     }
 
     @Bean
     public Queue createBoqQueue() throws Exception {
-        Queue boq = QueueBuilder.durable("BOQ." + queueName).build();
-        amqpAdmin().declareQueue(boq);
-        return boq;
+        return QueueBuilder.durable("BOQ." + queueName).build();
     }
 
     @Bean
@@ -99,5 +112,16 @@ public class RabbitConfig {
                 .recoverer(recoverer)
                 .build();
 
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(
+            ConnectionFactory connectionFactory,
+            JacksonJsonMessageConverter converter) {
+
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(converter);
+
+        return rabbitTemplate;
     }
 }

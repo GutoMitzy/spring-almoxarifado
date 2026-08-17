@@ -17,6 +17,10 @@ eureka:
 rabbitmq:
   queue:
     name: NOTIFICATION_QUEUE
+  exchange:
+    name: NOTIFICATION_EXCHANGE
+  routing:
+    key: ALMOXARIFADO_ROUTING_KEY
   host: rabbitmq
   username: almoxarifado
   password: almoxarifado123

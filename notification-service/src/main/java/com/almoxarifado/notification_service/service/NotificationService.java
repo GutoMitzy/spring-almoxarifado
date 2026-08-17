@@ -11,10 +11,13 @@ public class NotificationService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Value("${rabbitmq.queue.name}")
-    private String queueName;
+    @Value("${rabbitmq.exchange.name}")
+    private String exchangeName;
+
+    @Value("${rabbitmq.routing.key}")
+    private String routingKey;
 
     public void sendNotification(NotificationDto notificationDto) {
-        rabbitTemplate.convertAndSend(queueName, notificationDto);
+        rabbitTemplate.convertAndSend(exchangeName, routingKey, notificationDto);
     }
 }

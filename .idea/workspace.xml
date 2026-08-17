@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9cd1fcf-a410-4dbe-bbaa-54b365f425c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-discover/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/service/NotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discover/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/service-discover/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application-dev.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
