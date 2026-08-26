@@ -70,10 +70,16 @@ O login retorna um `TokenResponseDto`.
 | `POST`  | `/v2/almoxarifado/entradas`             | Registra uma entrada de estoque |
 | `PATCH` | `/v2/almoxarifado/entradas/{id}/finish` | Finaliza uma entrada de estoque |
 
+### Ai Assistant
+
+| Método  | Endpoint                     | Operação                             |
+| ------- |------------------------------|--------------------------------------|
+| `POST`  | `/v2/almoxarifado/assistant` | Pergunta informações do sistema à IA |
+
 ## Dependências principais
 
 | Tecnologia              | Finalidade                              |
-| ----------------------- | --------------------------------------- |
+|-------------------------|-----------------------------------------|
 | Java 25                 | Linguagem utilizada no projeto          |
 | Spring Boot 4.1.0       | Framework principal                     |
 | Spring Web MVC          | Desenvolvimento da API REST             |
@@ -88,8 +94,8 @@ O login retorna um `TokenResponseDto`.
 | Maven                   | Gerenciamento do projeto e dependências |
 | Docker                  | Containerização                         |
 | Docker Compose          | Orquestração dos containers             |
+| LangChain4J             | Integração com LLM's                    |
 
-As versões de Java, Spring Boot, SpringDoc, JJWT, H2 e demais dependências são definidas atualmente no `pom.xml`.
 
 ## Autenticação
 
@@ -128,47 +134,20 @@ O Docker Compose utiliza um arquivo `.env` na raiz do projeto para fornecer as c
 Exemplo:
 
 ```env
-DATABASE_NAME=almoxarifado
-DATABASE_DEV=almoxarifado_dev
-DATABASE_USERNAME**
-DATABASE_PASSWORD=**
+DATABASE_NAME=
+DATABASE_DEV=
+DATABASE_USERNAME
+DATABASE_PASSWORD=
 
-JWT_KEY=**
-JWT_EXPIRATION=**
+JWT_KEY=
+JWT_EXPIRATION=
+
+RABBITMQ_PASSWORD=
+RABBITMQ_USERNAME=
 ```
-
-| Variável            | Descrição                                              |
-| ------------------- | ------------------------------------------------------ |
-| `DATABASE_NAME`     | Nome do banco principal                                |
-| `DATABASE_DEV`      | Nome do banco utilizado no ambiente de desenvolvimento |
-| `DATABASE_USERNAME` | Usuário do banco                                       |
-| `DATABASE_PASSWORD` | Senha do banco                                         |
-| `JWT_KEY`           | Chave utilizada para assinatura dos tokens JWT         |
-| `JWT_EXPIRATION`    | Tempo de expiração do JWT em milissegundos             |
-
-> O arquivo `.env` deve ser utilizado apenas para configurações locais. Não versione credenciais reais no repositório.
-
-### Observação sobre o `.env`
-
-O `.env` é carregado pelo **Docker Compose** para substituir as variáveis `${...}` presentes no `docker-compose.yaml`.
-
-Ele não é automaticamente carregado pelo Spring Boot durante a execução direta pela IDE.
 
 Para execução local pelo IntelliJ, as variáveis devem ser configuradas no ambiente de execução da aplicação.
 
-## Docker
-
-O projeto possui um `Dockerfile` para construção da imagem da aplicação e um `docker-compose.yaml` para orquestrar a aplicação e os bancos de dados.
-
-A configuração possui três serviços:
-
-| Serviço                         | Container          | Porta          |
-| ------------------------------- | ------------------ | -------------- |
-| Aplicação Spring Boot           | `almoxarifado-app` | `8082`         |
-| MySQL principal                 | `mysql`            | `3306` interno |
-| MySQL de desenvolvimento/testes | `mysql-test`       | `3307:3306`    |
-
-A aplicação aguarda o `mysql_db` ficar saudável antes de iniciar o container `backend_core`.
 
 ## Executando com Docker
 
@@ -176,7 +155,6 @@ Primeiramente, crie o arquivo `.env` na raiz do projeto.
 
 Depois, execute:
 
-Para executar os containers em segundo plano:
 
 ```bash
 docker compose up -d --build
@@ -186,13 +164,6 @@ docker compose up -d --build
 
 O projeto possui um profile `dev` configurado em `application-dev.yaml`.
 
-Nesse ambiente, a aplicação utiliza:
-
-```text
-MySQL: localhost:3307
-Banco: ${DATABASE_DEV}
-Porta da API: 8080
-```
 
 Com o profile `dev` ativo:
 

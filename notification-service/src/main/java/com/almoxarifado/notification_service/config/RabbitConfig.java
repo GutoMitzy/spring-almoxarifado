@@ -28,22 +28,33 @@ public class RabbitConfig {
     @Value("${rabbitmq.port}")
     private int port;
 
+    @Value("${rabbitmq.queue.name}")
+    private String queueName;
+
+    @Value("${rabbitmq.routing.key}")
+    private String routingKey;
+
     @Value("${rabbitmq.exchange.name}")
     private String exchangeName;
 
+
     @Bean
-    public JacksonJsonMessageConverter jackson2JsonMessageConverter() {
+    public JacksonJsonMessageConverter jacksonJsonMessageConverter() {
         return new JacksonJsonMessageConverter();
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,
-                                        JacksonJsonMessageConverter converter) {
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+            ConnectionFactory connectionFactory,
+            JacksonJsonMessageConverter converter,
+            StatelessRetryOperationsInterceptor retryOperationsInterceptor) {
 
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter);
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
 
-        return rabbitTemplate;
+        factory.setConnectionFactory(connectionFactory);
+        factory.setMessageConverter(converter);
+        factory.setAdviceChain(retryOperationsInterceptor);
+        return factory;
     }
 
     @Bean
@@ -57,8 +68,61 @@ public class RabbitConfig {
     }
 
     @Bean
-    public TopicExchange createExchange() {
+    public AmqpAdmin amqpAdmin() throws Exception {
+        return new RabbitAdmin(cachingConnectionFactory());
+    }
+
+    @Bean
+    public Queue createQueue() throws Exception {
+        return QueueBuilder.durable(queueName).build();
+    }
+
+    @Bean
+    public TopicExchange exchange() {
         return new TopicExchange(exchangeName);
+    }
+
+    @Bean
+    public Binding createBinding(TopicExchange exchange) throws Exception {
+        return BindingBuilder
+                .bind(createQueue())
+                .to(exchange)
+                .with(routingKey);
+    }
+
+    @Bean
+    public Queue createBoqQueue() throws Exception {
+        return QueueBuilder.durable("BOQ." + queueName).build();
+    }
+
+    @Bean
+    public RepublishMessageRecoverer messageRecoverer(RabbitTemplate rabbitTemplate) {
+        RepublishMessageRecoverer recoverer = new RepublishMessageRecoverer(rabbitTemplate);
+        recoverer.setErrorRoutingKeyPrefix("BOQ.");
+        return recoverer;
+    }
+
+    @Bean
+    public StatelessRetryOperationsInterceptor retryOperationsInterceptor(
+            RepublishMessageRecoverer recoverer) {
+        return RetryInterceptorBuilder
+                .stateless()
+                .maxRetries(2)
+                .backOffOptions(2000, 1, 100000)
+                .recoverer(recoverer)
+                .build();
+
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(
+            ConnectionFactory connectionFactory,
+            JacksonJsonMessageConverter converter) {
+
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(converter);
+
+        return rabbitTemplate;
     }
 
 }

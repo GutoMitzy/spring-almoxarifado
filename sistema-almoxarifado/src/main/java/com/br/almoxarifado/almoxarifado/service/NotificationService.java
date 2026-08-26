@@ -5,17 +5,25 @@ import com.br.almoxarifado.almoxarifado.dto.NotificationDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 @Service
 @RequiredArgsConstructor
-@Validated
 public class NotificationService {
-    private final NotificationClient notificationClient;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
-    @RabbitListener(queues = "${rabbitmq.queue.name}")
-    public void receaveMessage(@Valid NotificationDto notificationDto) {
-        System.out.println("receaveMessage: " + notificationDto);
+    @Value("${rabbitmq.exchange.name}")
+    private String exchangeName;
+
+    @Value("${rabbitmq.routing.key}")
+    private String routingKey;
+
+    public void sendNotification(NotificationDto notificationDto) {
+        rabbitTemplate.convertAndSend(exchangeName, routingKey, notificationDto);
     }
 }

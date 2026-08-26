@@ -1,4 +1,6 @@
 package com.almoxarifado.notification_service.dto;
 
-public record NotificationDto(String titulo, String mensagem) {
+import jakarta.validation.constraints.NotBlank;
+
+public record NotificationDto(@NotBlank String titulo, @NotBlank String mensagem) {
 }
