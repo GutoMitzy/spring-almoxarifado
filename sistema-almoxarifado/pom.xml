@@ -111,6 +111,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
 			<version>1.19.0-beta29</version>
@@ -124,6 +129,14 @@
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-spring-boot-starter</artifactId>
 			<version>1.19.0-beta29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 	</dependencies>
 

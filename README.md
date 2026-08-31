@@ -26,55 +26,16 @@ A API utiliza o prefixo:
 ```text
 /v2/almoxarifado
 ```
+### Documentação da API
 
-### Autenticação
+A aplicação utiliza **SpringDoc OpenAPI** para documentação da API.
 
-| Método | Endpoint                         | Operação                            |
-| ------ | -------------------------------- | ----------------------------------- |
-| `POST` | `/v2/almoxarifado/auth/register` | Registra um novo usuário            |
-| `POST` | `/v2/almoxarifado/auth/login`    | Realiza login e retorna o token JWT |
+Com a aplicação executando, a interface do Swagger pode ser acessada através de:
 
-O login retorna um `TokenResponseDto`.
+```text
+http://localhost:8080/swagger-ui/index.html
+```
 
-### Categorias
-
-| Método | Endpoint                      | Operação                    |
-| ------ | ----------------------------- | --------------------------- |
-| `POST` | `/v2/almoxarifado/categorias` | Cadastra uma nova categoria |
-
-### Empresas
-
-| Método | Endpoint                    | Operação                  |
-| ------ | --------------------------- | ------------------------- |
-| `POST` | `/v2/almoxarifado/empresas` | Cadastra uma nova empresa |
-
-### Corredores
-
-| Método | Endpoint                                                   | Operação                               |
-| ------ | ---------------------------------------------------------- | -------------------------------------- |
-| `POST` | `/v2/almoxarifado/corredores`                              | Cadastra um novo corredor              |
-| `GET`  | `/v2/almoxarifado/corredores/{id}?page={page}&size={size}` | Consulta um corredor de forma paginada |
-
-### Itens
-
-| Método | Endpoint                                                     | Operação                            |
-| ------ | ------------------------------------------------------------ | ----------------------------------- |
-| `POST` | `/v2/almoxarifado/itens`                                     | Cadastra um novo item               |
-| `GET`  | `/v2/almoxarifado/itens?page={page}&size={size}`             | Lista os itens de forma paginada    |
-| `GET`  | `/v2/almoxarifado/itens/{categoria}?page={page}&size={size}` | Lista itens filtrados por categoria |
-
-### Entrada de Estoque
-
-| Método  | Endpoint                                | Operação                        |
-| ------- | --------------------------------------- | ------------------------------- |
-| `POST`  | `/v2/almoxarifado/entradas`             | Registra uma entrada de estoque |
-| `PATCH` | `/v2/almoxarifado/entradas/{id}/finish` | Finaliza uma entrada de estoque |
-
-### Ai Assistant
-
-| Método  | Endpoint                     | Operação                             |
-| ------- |------------------------------|--------------------------------------|
-| `POST`  | `/v2/almoxarifado/assistant` | Pergunta informações do sistema à IA |
 
 ## Dependências principais
 
@@ -144,6 +105,9 @@ JWT_EXPIRATION=
 
 RABBITMQ_PASSWORD=
 RABBITMQ_USERNAME=
+
+PROMETHEUS_USERNAME=
+PROMETHEUS_PASSWORD=
 ```
 
 Para execução local pelo IntelliJ, as variáveis devem ser configuradas no ambiente de execução da aplicação.
@@ -173,18 +137,4 @@ SPRING_PROFILES_ACTIVE=dev
 
 A configuração atual de `application-dev.yaml` utiliza `localhost:3307` para conexão com o banco de desenvolvimento.
 
-## Documentação da API
 
-A aplicação utiliza **SpringDoc OpenAPI** para documentação da API.
-
-Com a aplicação executando, a interface do Swagger pode ser acessada através de:
-
-```text
-http://localhost:8082/swagger-ui/index.html
-```
-
-A especificação OpenAPI está disponível em:
-
-```text
-/v3/api-docs
-```

@@ -1,4 +1,4 @@
-package com.br.almoxarifado.almoxarifado.dto;
+package com.br.almoxarifado.almoxarifado.dto.projection;
 
 public interface ItemProjection {
     Integer getItemId();

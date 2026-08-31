@@ -6,6 +6,8 @@ services:
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -19,15 +21,19 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - database_data:/root/.dbtest
+      - mysql_test_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DATABASE_DEV}
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - almoxarifado_network
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:4.3.4-management
     restart: unless-stopped
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
     ports:
       - "8090:5672"
       - "15672:15672"
@@ -76,10 +82,70 @@ services:
         ollama pull qwen2.5:3b
         wait
 
+  prometheus:
+    container_name: prometheus-engine
+    image: prom/prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    networks:
+      - almoxarifado_network
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+
+  mysql-exporter:
+    container_name: mysql_exporter
+    image: prom/mysqld-exporter
+    restart: unless-stopped
+    command:
+      - "--mysqld.address=mysql_db-test:3306"
+      - "--mysqld.username=${EXPORTER_MYSQL_USERNAME}"
+    environment:
+      MYSQLD_EXPORTER_PASSWORD: "${EXPORTER_MYSQL_PASSWORD}"
+    ports:
+      - "9104:9104"
+    networks:
+      - almoxarifado_network
+    depends_on:
+      - mysql_db-test
+
+  cadvisor-exporter:
+    container_name: cadvisor-exporter
+    image: gcr.io/cadvisor/cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - "8088:8080"
+    networks:
+      - almoxarifado_network
+
+  grafana:
+    container_name: grafana-engine
+    image: grafana/grafana
+    restart: unless-stopped
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - almoxarifado_network
+
+
 networks:
   almoxarifado_network:
+    name: almoxarifado_network
     driver: bridge
 
 volumes:
   ollama_data:
-  database_data:
+  mysql_data:
+  mysql_test_data:
+  rabbitmq_data:
+  prometheus_data:
+  grafana_data:

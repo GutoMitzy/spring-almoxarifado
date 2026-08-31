@@ -2,10 +2,8 @@ package com.br.almoxarifado.almoxarifado.database.repository;
 
 import com.br.almoxarifado.almoxarifado.database.model.CategoriaModel;
 import com.br.almoxarifado.almoxarifado.database.model.CorredorModel;
-import com.br.almoxarifado.almoxarifado.dto.CorredorProjection;
-import org.springframework.beans.factory.annotation.Value;
+import com.br.almoxarifado.almoxarifado.dto.projection.CorredorProjection;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
@@ -13,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ICorredorRepository extends JpaRepository<CorredorModel, Integer> {

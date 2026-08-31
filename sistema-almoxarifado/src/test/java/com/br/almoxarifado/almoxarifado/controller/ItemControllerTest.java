@@ -1,6 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.dto.ItemProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
 import com.br.almoxarifado.almoxarifado.service.ItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

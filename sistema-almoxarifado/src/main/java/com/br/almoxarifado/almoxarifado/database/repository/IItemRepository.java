@@ -1,13 +1,15 @@
 package com.br.almoxarifado.almoxarifado.database.repository;
 
 import com.br.almoxarifado.almoxarifado.database.model.ItemModel;
-import com.br.almoxarifado.almoxarifado.dto.ItemProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.CategoriaContagemProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -51,5 +53,17 @@ public interface IItemRepository extends JpaRepository<ItemModel, Integer> {
     """)
     Page<ItemProjection> findItemsByCategoria(String categoria, Pageable pageable);
 
+    @NativeQuery("""
+        SELECT c.nome AS categoria, COUNT(i.id) AS quantidade
+        FROM itens i
+        INNER JOIN categorias c 
+            ON c.id = i.categoria_id
+        GROUP BY c.nome
+        ORDER BY c.nome
+    """)
+    List<CategoriaContagemProjection> contarItensPorCategoria();
+
     Optional<ItemModel> findByNome(String nome);
+
+
 }

@@ -2,8 +2,9 @@ package com.br.almoxarifado.almoxarifado.service;
 
 import com.br.almoxarifado.almoxarifado.database.model.CategoriaModel;
 import com.br.almoxarifado.almoxarifado.database.model.ItemModel;
+import com.br.almoxarifado.almoxarifado.database.repository.IEstoqueRepository;
 import com.br.almoxarifado.almoxarifado.database.repository.IItemRepository;
-import com.br.almoxarifado.almoxarifado.dto.ItemProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
 import com.br.almoxarifado.almoxarifado.dto.ItemDto;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
 import jakarta.transaction.Transactional;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ItemService {
     private final IItemRepository itemRepository;
+    private final IEstoqueRepository estoqueRepository;
+
     private final CategoriaService categoriaService;
     private final EstoqueService estoqueService;
 
@@ -39,5 +42,9 @@ public class ItemService {
     public ItemModel findByNome(String nome) {
         return itemRepository.findByNome(nome)
                 .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
+    }
+
+    public Page<ItemProjection> findItemsByStock(Integer estoque, Integer page, Integer size) {
+        return estoqueRepository.findItemsByStock(estoque, PageRequest.of(page, size));
     }
 }

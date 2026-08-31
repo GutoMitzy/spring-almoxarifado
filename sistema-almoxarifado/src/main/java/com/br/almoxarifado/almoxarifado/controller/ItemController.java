@@ -1,6 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.dto.ItemProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
 import com.br.almoxarifado.almoxarifado.dto.ItemDto;
 import com.br.almoxarifado.almoxarifado.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +26,17 @@ public class ItemController {
         return itemService.findAllItemsPage(page, size);
     }
 
-    @GetMapping("/{categoria}")
+    @GetMapping("/categoria")
     @ResponseStatus(HttpStatus.OK)
-    public Page<ItemProjection> findItemsByCategoria(@PathVariable String categoria,
+    public Page<ItemProjection> findItemsByCategoria(@RequestParam String categoria,
                                                      @RequestParam(required = false, defaultValue = "0") Integer page,
                                                      @RequestParam(required = false, defaultValue = "0") Integer size) {
         return itemService.findItemsByCategoria(categoria, page, size);
+    }
+
+    @GetMapping("/estoque")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<ItemProjection> findItemsByStock(@RequestParam Integer estoque, @RequestParam Integer page, @RequestParam Integer size) {
+        return itemService.findItemsByStock(estoque, page, size);
     }
 }

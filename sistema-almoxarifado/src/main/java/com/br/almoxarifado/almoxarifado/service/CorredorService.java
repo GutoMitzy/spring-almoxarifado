@@ -7,7 +7,7 @@ import com.br.almoxarifado.almoxarifado.database.model.ReceptaculoModel;
 import com.br.almoxarifado.almoxarifado.database.repository.ICorredorRepository;
 import com.br.almoxarifado.almoxarifado.database.repository.IReceptaculoRepository;
 import com.br.almoxarifado.almoxarifado.dto.CorredorDto;
-import com.br.almoxarifado.almoxarifado.dto.CorredorProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.CorredorProjection;
 import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

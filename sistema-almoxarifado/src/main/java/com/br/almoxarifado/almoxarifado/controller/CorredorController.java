@@ -1,8 +1,7 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.database.model.CorredorModel;
 import com.br.almoxarifado.almoxarifado.dto.CorredorDto;
-import com.br.almoxarifado.almoxarifado.dto.CorredorProjection;
+import com.br.almoxarifado.almoxarifado.dto.projection.CorredorProjection;
 import com.br.almoxarifado.almoxarifado.service.CorredorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

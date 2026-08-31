@@ -5,24 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9cd1fcf-a410-4dbe-bbaa-54b365f425c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/assistant/factory/AiAssistantFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/assistant/factory/AiAssistantFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/assistant/tools/EstoqueTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/AiAssitantController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/MessageDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/db-forest-config.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/prometheus.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/projection/CategoriaContagemProjection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/projection/EstoqueContagemProjection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/config/RabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/controller/NotificationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/dto/NotificationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/dto/NotificationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/almoxarifado/notification_service/service/NotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/RabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/assistant/tools/EstoqueTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/assistant/tools/EstoqueTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/AuthenticationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/config/AuthenticationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/CategoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/CorredorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/CorredorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/EmpresaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/EmpresaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/controller/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICategoriaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICategoriaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICorredorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/ICorredorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IEstoqueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IEstoqueRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/database/repository/IItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/CorredorProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/projection/CorredorProjection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/ItemProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/dto/projection/ItemProjection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/CategoriaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/CategoriaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/CorredorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/CorredorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/java/com/br/almoxarifado/almoxarifado/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema-almoxarifado/src/test/java/com/br/almoxarifado/almoxarifado/controller/ItemControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema-almoxarifado/src/test/java/com/br/almoxarifado/almoxarifado/controller/ItemControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +40,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -78,6 +85,7 @@
     &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Augusto/Documents/Codigos de Programas/Java/spring-almoxarifado/prometheus/src/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -97,6 +105,7 @@
       <recent name="C:\Users\Augusto\Documents\Codigos de Programas\Java\spring-almoxarifado\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Augusto\Documents\Codigos de Programas\Java\spring-almoxarifado\prometheus" />
       <recent name="C:\Users\Augusto\Documents\Codigos de Programas\Java\spring-almoxarifado" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -182,8 +191,12 @@
         <env name="DATABASE_NAME" value="almoxarifado" />
         <env name="DATABASE_PASSWORD" value="almoxarifado123" />
         <env name="DATABASE_USERNAME" value="root" />
+        <env name="EXPORTER_MYSQL_PASSWORD" value="Exporter123" />
+        <env name="PROMETHEUS_PASSWORD" value="prometheus123" />
+        <env name="PROMETHEUS_USERNAME" value="prometheus" />
         <env name="RABBITMQ_PASSWORD" value="almoxarifado123" />
         <env name="RABBITMQ_USERNAME" value="almoxarifado" />
+        <env name="EXPORTER_MYSQL_USERNAME" value="exporter" />
       </envs>
       <module name="almoxarifado" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.br.almoxarifado.almoxarifado.AlmoxarifadoApplication" />
@@ -255,5 +268,16 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/prometheus/src/Main.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
