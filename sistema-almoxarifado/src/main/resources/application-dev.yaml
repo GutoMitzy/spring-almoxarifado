@@ -28,7 +28,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/  # URL do Eureka Server
 
 jwt:
-  key: ${JWT_KEY:FrMomuJGGw3ewpb8hYZrLaUciGKPMSTDT6oYrzd6tuqSl6EHIIB7T0p1Y9WErzZLa5OPjn_0MX2MMhIwSQbxZXgBgf0BF0lbVgLbnhyqAw4Ru3iVHhTirodzYRJP9A2hIkDKxgZ6xj8UYtzGcB09tWCG4PADwatd-6ZC-wG9BIrCLVXF8cvg1Puo45FJz0OlQKpWv5c5Hu2tOMLfBFHLDIdU3FZ5iVDfH1LJ1G5oiyMIpXR9j-TNhkf_4aerrgJzc6cEHnh5seQA2N4gJia5XjGLCgwf0cLWn79upnsrqEFUUWJhQwl75WpEUKU6R0xTTEEBo0eLeXLJpXqlEqz9FMRH4qqmX_BS--Qp}
+  key: ${JWT_KEY}
   expiration: ${JWT_EXPIRATION:900000} #15minutos
 
 rabbitmq:

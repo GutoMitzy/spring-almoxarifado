@@ -22,6 +22,6 @@ rabbitmq:
   routing:
     key: ALMOXARIFADO_ROUTING_KEY
   host: rabbitmq
-  username: almoxarifado
-  password: almoxarifado123
+  username: ${RABBITMQ_USERNAME}
+  password: ${RABBITMQ_PASSWORD}
   port: 5672
