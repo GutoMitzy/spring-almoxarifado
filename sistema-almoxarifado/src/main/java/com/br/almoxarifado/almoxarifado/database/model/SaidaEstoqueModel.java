@@ -1,5 +1,6 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
+import com.br.almoxarifado.almoxarifado.dto.EmpresaDto;
 import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;

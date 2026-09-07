@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.lang.annotation.Native;
 import java.util.List;
 
 @Repository
@@ -48,4 +49,26 @@ public interface ICorredorRepository extends JpaRepository<CorredorModel, Intege
             WHERE c.id = :id
             """)
     Page<CorredorProjection> findCorredorByIdPage(@Param("id") Integer id, Pageable pageable);
+
+    @NativeQuery(value = """
+    SELECT  c.id                    corredorId,
+            ct.nome                 categoriaNome,
+            ct.descricao            categoriaDescricao,
+            r.id                    receptaculoId,
+            r.em_uso                receptaculoUso,
+            i.id                    itemId,
+            i.nome                  itemNome,
+            i.descricao             itemDescricao
+        FROM corredores c
+        INNER JOIN categorias ct
+            ON ct.id = c.categoria_id
+        LEFT JOIN receptaculos r
+            ON r.corredor_id = c.id
+        LEFT JOIN itens i
+            ON i.id = r.item_id
+        LEFT JOIN estoques e
+            ON e.peca_id = r.id
+        ORDER BY c.id, r.id
+    """)
+    List<CorredorProjection> findCorredoresInfo();
 }

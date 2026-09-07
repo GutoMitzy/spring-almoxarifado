@@ -15,7 +15,7 @@ public class ReceptaculoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private static Integer capacidade = 50;
+    public final static Integer capacidade = 50;
     private Integer emUso;
 
     @ManyToOne

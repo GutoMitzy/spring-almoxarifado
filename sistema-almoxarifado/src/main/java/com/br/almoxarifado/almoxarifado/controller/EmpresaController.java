@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.*;
 public class EmpresaController {
     private final EmpresaService empresaService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createEmpresa(@RequestBody EmpresaDto empresaDto) {
-        empresaService.createEmpresa(empresaDto);
-    }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public EmpresaModel findByNome(@RequestParam String nome, @RequestParam Integer page, @RequestParam Integer size) {
-        return empresaService.findByNome(nome);
+    public Page<EmpresaDto> findAllPage(@RequestParam(required = false) String nome,
+                                        @RequestParam Integer page,
+                                        @RequestParam Integer size) {
+        return empresaService.findByNomePage(nome, page, size);
     }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<EmpresaDto> findAllPage(@RequestParam Integer page, @RequestParam Integer size) {
+        return empresaService.findAllPage(page, size);
+    }
+
 
 }

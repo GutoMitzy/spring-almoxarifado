@@ -9,3 +9,7 @@ spring:
 
 app:
   authorizationApi: https://run.mocky.io/v3/9b89b419-a2f7-4885-aa86-5ddcea24d520
+
+jwt:
+  key: "chave-secreta-testes"
+  expiration: 3600000

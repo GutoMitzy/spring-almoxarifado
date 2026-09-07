@@ -1,6 +1,15 @@
 server:
   port: 8080
 
+logging:
+  level:
+    com.br.almoxarifado.almoxarifado: DEBUG
+
+rate-limit:
+  capacity: 20
+  refill-tokens: 20
+  refill-duration: 2
+
 spring:
   application:
     name: spring-almoxarifado

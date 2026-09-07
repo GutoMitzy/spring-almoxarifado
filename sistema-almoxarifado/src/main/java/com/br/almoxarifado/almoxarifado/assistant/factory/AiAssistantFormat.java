@@ -10,7 +10,9 @@ public interface AiAssistantFormat {
           Sempre responda em português, de forma direta e com números precisos.
           Se não houver ferramenta adequada para a pergunta, informe que não é possível responder.
           Se a pergunta solicitar qualquer tipo de alteração no banco de dados, recuse imediatamente
-          o processamento e diga que essa IA não possui essa funcionalidade no sistema.  
+          o processamento e diga que essa IA não possui essa funcionalidade no sistema. 
+          Em qualquer erro de execução, não forneça nenhuma informação da causa, apenas
+          retorne uma mensagem dizendo que ocorreu um erro inesperado. 
     """)
     String chat(String message);
 }

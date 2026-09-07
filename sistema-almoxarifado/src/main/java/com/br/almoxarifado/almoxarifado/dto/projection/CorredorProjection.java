@@ -1,22 +1,21 @@
 package com.br.almoxarifado.almoxarifado.dto.projection;
 
 public interface CorredorProjection {
-    Integer getCorredorId();
-
-    Integer getCategoriaId();
+    Long getCorredorId();
 
     String getCategoriaNome();
 
     String getCategoriaDescricao();
 
-    Integer getReceptaculoId();
+    Long getReceptaculoId();
 
     Integer getReceptaculoUso();
 
-    Integer getItemId();
+    Long getItemId();
 
     String getItemNome();
 
     String getItemDescricao();
 
+    Integer getQuantidadeAtual();
 }
