@@ -22,7 +22,8 @@ public class ItemController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<ItemProjection> findAllItemsPage(@RequestParam Integer page, @RequestParam Integer size) {
+    public Page<ItemProjection> findAllItemsPage(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                 @RequestParam(required = false, defaultValue = "10") Integer size) {
         return itemService.findAllItemsPage(page, size);
     }
 
@@ -30,7 +31,7 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Page<ItemProjection> findItemsByCategoria(@RequestParam String categoria,
                                                      @RequestParam(required = false, defaultValue = "0") Integer page,
-                                                     @RequestParam(required = false, defaultValue = "0") Integer size) {
+                                                     @RequestParam(required = false, defaultValue = "10") Integer size) {
         return itemService.findItemsByCategoria(categoria, page, size);
     }
 

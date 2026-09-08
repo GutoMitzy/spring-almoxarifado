@@ -33,3 +33,5 @@ build/
 .vscode/
 
 .env
+jmeter-testing/apache-jmeter-5.6.3/
+jmeter-testing/jmeter.log
