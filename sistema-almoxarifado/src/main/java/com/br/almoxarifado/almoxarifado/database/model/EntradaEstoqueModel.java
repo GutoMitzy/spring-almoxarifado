@@ -22,7 +22,10 @@ public class EntradaEstoqueModel {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDate data;
+    private LocalDate dataRegistro;
+
+    private LocalDate dataConclusao;
+    private LocalDate dataPrevisao;
 
     @Column(nullable = false)
     private BigDecimal valorTotal;
@@ -33,17 +36,16 @@ public class EntradaEstoqueModel {
 
     @ManyToOne
     @JoinColumn(name = "fornecedor")
-    private EmpresaModel fornecedor;
+    private EmpresaModel empresa;
 
     @OneToMany
     @JoinColumn(name = "item_transporte_entrada_id")
     private List<ItemTransporteModel> itens;
 
     public EntradaEstoqueModel(EntradaEstoqueDto data, EmpresaModel fornecedor, List<ItemTransporteModel> itens) {
-        this.data = data.getData();
         this.valorTotal = data.getValorTotal();
         this.status = EntradaEstoqueStatusEnum.PENDENTE;
-        this.fornecedor = fornecedor;
+        this.empresa = fornecedor;
         this.itens = itens;
     }
 }

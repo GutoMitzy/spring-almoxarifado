@@ -1,7 +1,11 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
+import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "transporte_item")

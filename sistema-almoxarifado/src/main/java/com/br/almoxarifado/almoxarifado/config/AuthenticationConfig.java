@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +30,7 @@ public class AuthenticationConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http
+                .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(ex -> ex
@@ -37,7 +39,7 @@ public class AuthenticationConfig {
                             response.setStatus(HttpStatus.FORBIDDEN.value());
                         }))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/v2/almoxarifado/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/actuator/**").permitAll()
+                        .requestMatchers("/v2/almoxarifado/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/actuator/**", "/v2/almoxarifado/health").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v2/almoxarifado/categorias",
                                 "/v2/almoxarifado/empresas",
                                 "/role/{empresa_id}")

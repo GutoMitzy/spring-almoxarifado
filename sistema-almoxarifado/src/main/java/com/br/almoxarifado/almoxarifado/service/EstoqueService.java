@@ -5,6 +5,7 @@ import com.br.almoxarifado.almoxarifado.database.repository.*;
 import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.dto.EntradaItemDto;
 import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
+import com.br.almoxarifado.almoxarifado.dto.StatisticsDto;
 import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
 import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
@@ -12,14 +13,14 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class EstoqueService {
-    private final IEstoqueRepository estoqueRepository;
-
     private final IEntradaEstoqueRepository entradaEstoqueRepository;
     private final ISaidaEstoqueRepository saidaEstoqueRepository;
     private final IItemTransporteRepository itemTransporteRepository;
@@ -27,13 +28,6 @@ public class EstoqueService {
 
     private final EmpresaService empresaService;
     private final CorredorService corredorService;
-
-    public void createEstoque(ItemModel data) {
-        estoqueRepository.save(EstoqueModel.builder()
-                        .quantidade(0)
-                        .item(data)
-                .build());
-    }
 
     @Transactional(rollbackOn = Exception.class)
     public void createEntradaEstoque(EntradaEstoqueDto entradaEstoqueDto) {
@@ -66,12 +60,12 @@ public class EstoqueService {
         }
 
         for(ItemTransporteModel entradaItem : entrada.getItens()) {
-            EstoqueModel estoque = estoqueRepository.findById(entradaItem.getItem().getId())
-                    .orElseThrow(() -> new NotFoundException("Estoque não encontrado!"));
+            ItemModel item = itemRepository.findById(entradaItem.getItem().getId())
+                    .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
 
             Integer quantidadeRecebida = entradaItem.getQuantidade();
-            estoque.addQuantidade(quantidadeRecebida);
-            estoqueRepository.save(estoque);
+            item.addQuantidade(quantidadeRecebida);
+            itemRepository.save(item);
 
             corredorService.addItemReceptaculo(entradaItem.getItem().getCategoria(), entradaItem.getItem(), quantidadeRecebida);
         }
@@ -88,17 +82,15 @@ public class EstoqueService {
         for(EntradaItemDto itemDto : saidaEstoqueDto.getItens()) {
             ItemModel item = itemRepository.findByNome(itemDto.getNome())
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
+
             ItemTransporteModel saidaItem = ItemTransporteModel.builder()
                     .item(item)
                     .quantidade(itemDto.getQuantidade())
                     .build();
 
-            EstoqueModel estoque = estoqueRepository.findById(saidaItem.getItem().getId())
-                    .orElseThrow(() -> new NotFoundException("Estoque não encontrado!"));
-
             Integer quantidadeEnviada = saidaItem.getQuantidade();
-            estoque.subtractQuantidade(quantidadeEnviada);
-            estoqueRepository.save(estoque);
+            item.subtractQuantidade(quantidadeEnviada);
+            itemRepository.save(item);
 
             corredorService.removeItemReceptaculo(saidaItem.getItem().getCategoria(), saidaItem.getItem(), quantidadeEnviada);
 
@@ -107,5 +99,19 @@ public class EstoqueService {
         }
         SaidaEstoqueModel entrada = new SaidaEstoqueModel(saidaEstoqueDto, cliente, itens);
         saidaEstoqueRepository.save(entrada);
+    }
+
+    public StatisticsDto getTodayStatistics() {
+        Integer itensEmBaixa = itemRepository.countByQuantidadeLessThan(50);
+        LocalDate hoje = LocalDate.now();
+
+        Integer entradasRecentes = entradaEstoqueRepository.countByDataRegistroEquals(hoje);
+        Integer saidasRecentes = saidaEstoqueRepository.countByDataRegistroEquals(hoje);
+
+        return StatisticsDto.builder()
+                .itensEmBaixa(itensEmBaixa)
+                .entradasRecentes(entradasRecentes)
+                .saidasRecentes(saidasRecentes)
+                .build();
     }
 }

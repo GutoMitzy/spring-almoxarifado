@@ -18,19 +18,22 @@ public interface IItemRepository extends JpaRepository<ItemModel, Integer> {
     SELECT  i.id                 itemId,
             i.nome               nome,
             i.descricao          descricao,
+            i.quantidade         quantidade,
+            i.status             status,
             i.categoria_id       categoriaId,
             c.nome               categoriaNome,
             c.descricao          categoriaDescricao
     FROM itens i
     INNER JOIN categorias c
-    WHERE c.id = i.id
+    WHERE c.id = i.categoria_id
+    ORDER BY i.id
     """, countQuery = """
             SELECT COUNT(*)
             FROM itens i
             INNER JOIN categorias c
-            WHERE c.id = i.id
+            WHERE c.id = i.categoria_id
     """)
-    Page<ItemProjection> findAllItemsPage(Pageable pageable);
+    Page<ItemProjection> findAllPage(Pageable pageable);
 
 
     @NativeQuery(value = """
@@ -38,6 +41,8 @@ public interface IItemRepository extends JpaRepository<ItemModel, Integer> {
             i.nome               nome,
             i.descricao          descricao,
             i.categoria_id       categoriaId,
+            i.quantidade         quantidade,
+            i.status             status,
             c.nome               categoriaNome,
             c.descricao          categoriaDescricao
     FROM itens i
@@ -51,7 +56,7 @@ public interface IItemRepository extends JpaRepository<ItemModel, Integer> {
             ON c.id = i.id
             WHERE c.nome = :categoria
     """)
-    Page<ItemProjection> findItemsByCategoria(String categoria, Pageable pageable);
+    Page<ItemProjection> findByCategoria(String categoria, Pageable pageable);
 
     @NativeQuery("""
         SELECT c.nome AS categoria, COUNT(i.id) AS quantidade
@@ -61,9 +66,33 @@ public interface IItemRepository extends JpaRepository<ItemModel, Integer> {
         GROUP BY c.nome
         ORDER BY c.nome
     """)
-    List<CategoriaContagemProjection> contarItensPorCategoria();
+    List<CategoriaContagemProjection> countByCategoria();
 
     Optional<ItemModel> findByNome(String nome);
 
+    @NativeQuery(value = """
+    SELECT  i.id                 itemId,
+            i.nome               itemNome,
+            i.descricao          descricao,
+            i.quantidade         quantidade,
+            i.status             status,
+            c.nome				 categoriaNome,
+            c.descricao			 categoriaDescricao
+    FROM itens i
+    INNER JOIN categorias c
+    	ON i.categoria_id = c.id
+    WHERE quantidade >= :estoque
+    ORDER BY quantidade;
+    """, countQuery = """
+            SELECT COUNT(*)
+            FROM itens i
+            INNER JOIN categorias c
+                ON i.categoria_id = c.id
+            WHERE quantidade >= 60
+            ORDER BY quantidade;
+    """)
+    Page<ItemProjection> findByQuantidadePage(Integer estoque, Pageable pageable);
+
+    Integer countByQuantidadeLessThan(Integer quantidade);
 
 }

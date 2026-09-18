@@ -5,6 +5,8 @@ public interface CorredorProjection {
 
     String getCategoriaNome();
 
+    String getSetorNome();
+
     String getCategoriaDescricao();
 
     Long getReceptaculoId();
@@ -18,4 +20,6 @@ public interface CorredorProjection {
     String getItemDescricao();
 
     Integer getQuantidadeAtual();
+
+    String getItemStatus();
 }

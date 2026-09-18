@@ -33,7 +33,6 @@ public class RateLimiterFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        log.info("Auth no rate limiter: {}", SecurityContextHolder.getContext().getAuthentication());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(isAdmin(authentication)) {

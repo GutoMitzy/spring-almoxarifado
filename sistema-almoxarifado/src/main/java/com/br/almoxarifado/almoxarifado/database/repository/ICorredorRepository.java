@@ -19,24 +19,26 @@ public interface ICorredorRepository extends JpaRepository<CorredorModel, Intege
 
 
     @NativeQuery(value = """
-        SELECT  c.id                corredorId,
-                c.categoria_id      categoriaId,
-                ct.nome             categoriaNome,
-                ct.descricao        categoriaDescricao,
-                r.id				receptaculoId,
-                r.em_uso            receptaculoUso,
-                r.item_id           itemId,
-                i.nome              itemNome,
-                i.descricao         itemDescricao
-        FROM corredores c
-        INNER JOIN categorias ct
-            ON c.categoria_id = ct.id
-        INNER JOIN receptaculos r
-            ON r.corredor_id = c.id
-        INNER JOIN itens i
-            ON r.item_id = i.id
-        WHERE c.id = :id
-        ORDER BY r.id;
+       SELECT  c.id                AS corredorId,
+               c.setor             AS corredorSetor,
+               c.categoria_id      AS categoriaId,
+               ct.nome             AS categoriaNome,
+               ct.descricao        AS categoriaDescricao,
+               r.id                AS receptaculoId,
+               r.em_uso            AS receptaculoUso,
+               r.item_id           AS itemId,
+               i.nome              AS itemNome,
+               i.descricao         AS itemDescricao,
+               i.status            AS itemStatus
+       FROM corredores c
+       INNER JOIN categorias ct
+           ON c.categoria_id = ct.id
+       INNER JOIN receptaculos r
+           ON r.corredor_id = c.id
+       LEFT JOIN itens i
+           ON r.item_id = i.id
+       WHERE c.setor = :setor
+       ORDER BY r.id;
     """, countQuery = """
             SELECT COUNT(*)
             FROM corredores c
@@ -44,11 +46,11 @@ public interface ICorredorRepository extends JpaRepository<CorredorModel, Intege
                 ON c.categoria_id = ct.id
             INNER JOIN receptaculos r
                 ON r.corredor_id = c.id
-            INNER JOIN itens i
-                ON r.item_id = i.id;
-            WHERE c.id = :id
+            LEFT JOIN itens i
+                ON r.item_id = i.id
+            WHERE c.setor = :setor
             """)
-    Page<CorredorProjection> findCorredorByIdPage(@Param("id") Integer id, Pageable pageable);
+    Page<CorredorProjection> findCorredorBySetorPage(@Param("setor") String setor, Pageable pageable);
 
     @NativeQuery(value = """
     SELECT  c.id                    corredorId,
@@ -59,6 +61,7 @@ public interface ICorredorRepository extends JpaRepository<CorredorModel, Intege
             i.id                    itemId,
             i.nome                  itemNome,
             i.descricao             itemDescricao
+            i.status            AS itemStatus
         FROM corredores c
         INNER JOIN categorias ct
             ON ct.id = c.categoria_id

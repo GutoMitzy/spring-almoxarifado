@@ -1,7 +1,10 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
 import com.br.almoxarifado.almoxarifado.dto.ItemDto;
+import com.br.almoxarifado.almoxarifado.enums.ItemStatusEnum;
+import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class ItemModel {
     @Column(unique = true)
     private String nome;
     private String descricao;
+    private Integer quantidade = 0;
+    private String status = ItemStatusEnum.ESGOTADO.name();
+
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -30,5 +36,29 @@ public class ItemModel {
         this.nome = data.getNome();
         this.descricao = data.getDescricao();
         this.categoria = categoria;
+    }
+
+    public void addQuantidade(Integer quantidade) {
+        this.quantidade += quantidade;
+        updateStatus();
+    }
+
+    public void subtractQuantidade(Integer quantidade) {
+        if(quantidade > this.quantidade) {
+            throw new BadRequestException("Não há estoque suficiente para a saída!");
+        }
+
+        this.quantidade -= quantidade;
+        updateStatus();
+    }
+
+    public void updateStatus() {
+        if(this.quantidade >= 50) {
+            this.status = ItemStatusEnum.DISPONIVEL.name();
+        } else if(this.quantidade < 50) {
+            this.status = ItemStatusEnum.BAIXO_ESTOQUE.name();
+        } else {
+            this.status = ItemStatusEnum.ESGOTADO.name();
+        }
     }
 }

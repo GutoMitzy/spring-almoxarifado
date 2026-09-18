@@ -25,23 +25,25 @@ public class SaidaEstoqueModel {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDate data;
+    private LocalDate dataRegistro;
+
+    private LocalDate dataConclusao;
+    private LocalDate dataPrevisao;
 
     @Column(nullable = false)
     private BigDecimal valorTotal;
 
     @ManyToOne
     @JoinColumn(name = "cliente")
-    private EmpresaModel cliente;
+    private EmpresaModel empresa;
 
     @OneToMany
     @JoinColumn(name = "item_transporte_saida_id")
     private List<ItemTransporteModel> itens;
 
     public SaidaEstoqueModel(SaidaEstoqueDto data, EmpresaModel cliente, List<ItemTransporteModel> itens) {
-        this.data = LocalDate.now();
         this.valorTotal = data.getValorTotal();
-        this.cliente = cliente;
+        this.empresa = cliente;
         this.itens = itens;
     }
 }

@@ -1,6 +1,7 @@
 package com.br.almoxarifado.almoxarifado.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -14,4 +15,6 @@ public class ItemDto {
     private String descricao;
     @NotBlank
     private String categoria;
+    @NotNull
+    private Integer quantidade;
 }

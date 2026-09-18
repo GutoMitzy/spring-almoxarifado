@@ -17,6 +17,9 @@ public class CorredorModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true, nullable = false, length = 1)
+    private String setor;
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private CategoriaModel categoria;

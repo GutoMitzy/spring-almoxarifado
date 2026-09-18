@@ -24,10 +24,11 @@ public class CorredorController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/setores")
     @ResponseStatus(HttpStatus.OK)
-    public Page<CorredorProjection> findCorredorById(@PathVariable Integer id,
-                                                     @RequestParam Integer page, @RequestParam Integer size) {
-        return corredorService.findCorredorByIdPage(id, page, size);
+    public Page<CorredorProjection> findCorredorBySetorPage(@RequestParam String setor,
+                                                     @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                     @RequestParam(required = false, defaultValue = "10") Integer size) {
+        return corredorService.findCorredorBySetorPage(setor, page, size);
     }
 }
