@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -24,9 +25,12 @@ public class ItemModel {
     @Column(unique = true)
     private String nome;
     private String descricao;
+    @Column(nullable = false)
     private Integer quantidade = 0;
+    @Column(nullable = false)
     private String status = ItemStatusEnum.ESGOTADO.name();
-
+    @Column(nullable = false)
+    private BigDecimal precoUnitario;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -36,6 +40,7 @@ public class ItemModel {
         this.nome = data.getNome();
         this.descricao = data.getDescricao();
         this.categoria = categoria;
+        this.precoUnitario = data.getPrecoUnitario();
     }
 
     public void addQuantidade(Integer quantidade) {

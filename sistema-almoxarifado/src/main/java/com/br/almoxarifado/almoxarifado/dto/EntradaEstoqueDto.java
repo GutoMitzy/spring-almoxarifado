@@ -16,15 +16,12 @@ import java.util.List;
 @Builder
 public class EntradaEstoqueDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate data;
-
-    @NotNull
-    private BigDecimal valorTotal;
+    private LocalDate previsaoEntrega;
 
     @NotBlank
     private String fornecedor;
 
     @NotNull
-    private List<EntradaItemDto> itens;
+    private List<ItemMovimentacaoDto> itens;
 
 }

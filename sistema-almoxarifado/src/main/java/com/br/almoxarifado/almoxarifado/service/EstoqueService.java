@@ -3,7 +3,7 @@ package com.br.almoxarifado.almoxarifado.service;
 import com.br.almoxarifado.almoxarifado.database.model.*;
 import com.br.almoxarifado.almoxarifado.database.repository.*;
 import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
-import com.br.almoxarifado.almoxarifado.dto.EntradaItemDto;
+import com.br.almoxarifado.almoxarifado.dto.ItemMovimentacaoDto;
 import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.dto.StatisticsDto;
 import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class EstoqueService {
         EmpresaModel fornecedor = empresaService.findByNome(entradaEstoqueDto.getFornecedor());
         List<ItemTransporteModel> itens = new ArrayList<>();
 
-        for(EntradaItemDto itemDto : entradaEstoqueDto.getItens()) {
+        for(ItemMovimentacaoDto itemDto : entradaEstoqueDto.getItens()) {
             ItemModel item = itemRepository.findByNome(itemDto.getNome())
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
             ItemTransporteModel entradaItem = ItemTransporteModel.builder()
@@ -79,7 +78,7 @@ public class EstoqueService {
         EmpresaModel cliente = empresaService.findByNome(saidaEstoqueDto.getCliente());
         List<ItemTransporteModel> itens = new ArrayList<>();
 
-        for(EntradaItemDto itemDto : saidaEstoqueDto.getItens()) {
+        for(ItemMovimentacaoDto itemDto : saidaEstoqueDto.getItens()) {
             ItemModel item = itemRepository.findByNome(itemDto.getNome())
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
 

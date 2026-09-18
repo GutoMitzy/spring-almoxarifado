@@ -40,8 +40,8 @@ public class EstoqueTools {
     }
 
     @Tool("Retorna lista de quantos itens existem para cada categoria registrada")
-    public String contarItensPorCategoria() {
-        List<CategoriaContagemProjection> resultado = itemRepository.countByCategoria();
+    public String contarItensPorCategoria(String categoria) {
+        List<CategoriaContagemProjection> resultado = itemRepository.countByCategoriaNome(categoria);
 
         return formatarLista(resultado,
                 r -> r.getCategoria() + " : " + r.getQuantidade(),

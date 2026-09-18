@@ -43,7 +43,10 @@ public class EntradaEstoqueModel {
     private List<ItemTransporteModel> itens;
 
     public EntradaEstoqueModel(EntradaEstoqueDto data, EmpresaModel fornecedor, List<ItemTransporteModel> itens) {
-        this.valorTotal = data.getValorTotal();
+        this.valorTotal = itens.stream()
+                .map(item -> item.getItem().getPrecoUnitario()
+                        .multiply(BigDecimal.valueOf(item.getQuantidade())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         this.status = EntradaEstoqueStatusEnum.PENDENTE;
         this.empresa = fornecedor;
         this.itens = itens;

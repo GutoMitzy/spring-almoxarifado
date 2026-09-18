@@ -42,7 +42,10 @@ public class SaidaEstoqueModel {
     private List<ItemTransporteModel> itens;
 
     public SaidaEstoqueModel(SaidaEstoqueDto data, EmpresaModel cliente, List<ItemTransporteModel> itens) {
-        this.valorTotal = data.getValorTotal();
+        this.valorTotal = itens.stream()
+                .map(item -> item.getItem().getPrecoUnitario()
+                        .multiply(BigDecimal.valueOf(item.getQuantidade())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         this.empresa = cliente;
         this.itens = itens;
     }

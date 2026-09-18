@@ -3,7 +3,6 @@ package com.br.almoxarifado.almoxarifado.service;
 import com.br.almoxarifado.almoxarifado.database.model.CategoriaModel;
 import com.br.almoxarifado.almoxarifado.database.model.ItemModel;
 import com.br.almoxarifado.almoxarifado.database.repository.IItemRepository;
-import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
 import com.br.almoxarifado.almoxarifado.dto.ItemDto;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
 import jakarta.transaction.Transactional;
@@ -27,12 +26,12 @@ public class ItemService {
         itemRepository.save(item);
     }
 
-    public Page<ItemProjection> findAllItemsPage(Integer page, Integer size) {
-        return itemRepository.findAllPage(PageRequest.of(page, size));
+    public Page<ItemDto> findAllItemsPage(Integer page, Integer size) {
+        return itemRepository.findAll(PageRequest.of(page, size)).map(ItemDto::toDto);
     }
 
-    public Page<ItemProjection> findItemsByCategoria(String categoria, Integer page, Integer size) {
-        return itemRepository.findByCategoria(categoria, PageRequest.of(page, size));
+    public Page<ItemDto> findItemsByCategoria(String categoria, Integer page, Integer size) {
+        return itemRepository.findByCategoriaNome(categoria, PageRequest.of(page, size)).map(ItemDto::toDto);
     }
 
     public ItemModel findByNome(String nome) {
@@ -40,7 +39,7 @@ public class ItemService {
                 .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
     }
 
-    public Page<ItemProjection> findItemsByStock(Integer estoque, Integer page, Integer size) {
-        return itemRepository.findByQuantidadePage(estoque, PageRequest.of(page, size));
+    public Page<ItemDto> findItemsByQuantidade(Integer quantidade, Integer minimo, Integer page, Integer size) {
+        return itemRepository.findByQuantidadeLessThanEqualAndQuantidadeGreaterThanEqual(quantidade, minimo, PageRequest.of(page, size)).map(ItemDto::toDto);
     }
 }

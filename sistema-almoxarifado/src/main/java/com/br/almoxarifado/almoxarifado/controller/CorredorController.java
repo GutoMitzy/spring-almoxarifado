@@ -1,5 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
+import com.br.almoxarifado.almoxarifado.database.model.CorredorModel;
 import com.br.almoxarifado.almoxarifado.dto.CorredorDto;
 import com.br.almoxarifado.almoxarifado.dto.projection.CorredorProjection;
 import com.br.almoxarifado.almoxarifado.service.CorredorService;
@@ -26,9 +27,9 @@ public class CorredorController {
 
     @GetMapping("/setores")
     @ResponseStatus(HttpStatus.OK)
-    public Page<CorredorProjection> findCorredorBySetorPage(@RequestParam String setor,
-                                                     @RequestParam(required = false, defaultValue = "0") Integer page,
-                                                     @RequestParam(required = false, defaultValue = "10") Integer size) {
+    public Page<CorredorModel> findCorredorBySetorPage(@RequestParam String setor,
+                                                       @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                       @RequestParam(required = false, defaultValue = "10") Integer size) {
         return corredorService.findCorredorBySetorPage(setor, page, size);
     }
 }

@@ -141,8 +141,8 @@ public class CorredorService {
                 .build());
     }
 
-    public Page<CorredorProjection> findCorredorBySetorPage(String setor, Integer page, Integer size) {
-        return corredorRepository.findCorredorBySetorPage(setor, PageRequest.of(page, size));
+    public Page<CorredorModel> findCorredorBySetorPage(String setor, Integer page, Integer size) {
+        return corredorRepository.findBySetor(setor, PageRequest.of(page, size));
     }
 
 

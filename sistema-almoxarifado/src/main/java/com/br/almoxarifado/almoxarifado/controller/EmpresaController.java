@@ -24,7 +24,8 @@ public class EmpresaController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public Page<EmpresaDto> findAllPage(@RequestParam Integer page, @RequestParam Integer size) {
+    public Page<EmpresaDto> findAllPage(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                        @RequestParam(required = false, defaultValue = "10") Integer size) {
         return empresaService.findAllPage(page, size);
     }
 

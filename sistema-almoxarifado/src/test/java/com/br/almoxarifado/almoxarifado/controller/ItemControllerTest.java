@@ -1,6 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.dto.projection.ItemProjection;
+import com.br.almoxarifado.almoxarifado.dto.ItemDto;
 import com.br.almoxarifado.almoxarifado.service.ItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,7 +44,7 @@ class ItemControllerTest {
     @DisplayName("Should return a Page of itens filtered by categoria")
     void findItemsByCategoriaSuccess() throws Exception {
         Pageable pageable = PageRequest.of(0, 10);
-        Page<ItemProjection> itemPageList = new PageImpl<>(List.of(), pageable, 0);
+        Page<ItemDto> itemPageList = new PageImpl<>(List.of(), pageable, 0);
 
         when(itemService.findItemsByCategoria("eletronica", 0, 0)).thenReturn(itemPageList);
 

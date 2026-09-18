@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EntradaItemDto {
+public class ItemMovimentacaoDto {
     @NotNull
     private Integer quantidade;
     @NotBlank
