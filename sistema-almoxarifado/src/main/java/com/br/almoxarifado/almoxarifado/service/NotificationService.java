@@ -1,6 +1,8 @@
 package com.br.almoxarifado.almoxarifado.service;
 
 import com.br.almoxarifado.almoxarifado.client.NotificationClient;
+import com.br.almoxarifado.almoxarifado.database.model.NotificationModel;
+import com.br.almoxarifado.almoxarifado.database.repository.INotificationRepository;
 import com.br.almoxarifado.almoxarifado.dto.NotificationDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +16,9 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @RequiredArgsConstructor
 public class NotificationService {
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
+
+    private final INotificationRepository notificationRepository;
 
     @Value("${rabbitmq.exchange.name}")
     private String exchangeName;
@@ -24,6 +27,7 @@ public class NotificationService {
     private String routingKey;
 
     public void sendNotification(NotificationDto notificationDto) {
+        notificationRepository.save(new NotificationModel(notificationDto));
         rabbitTemplate.convertAndSend(exchangeName, routingKey, notificationDto);
     }
 }

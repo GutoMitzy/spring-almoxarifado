@@ -124,7 +124,7 @@ public class CorredorService {
 
     @Transactional(rollbackOn = Exception.class)
     public void createCorredor(CorredorDto corredorDto) {
-        Integer quantidadeReceptaculos = corredorDto.getReceptaculos();
+        Integer quantidadeReceptaculos = corredorDto.receptaculos();
         List<ReceptaculoModel> receptaculos = new ArrayList<>();
         while(quantidadeReceptaculos > 0) {
             ReceptaculoModel receptaculo = new ReceptaculoModel();
@@ -133,7 +133,7 @@ public class CorredorService {
             quantidadeReceptaculos--;
         }
 
-        CategoriaModel categoria = categoriaService.findByNome(corredorDto.getCategoria());
+        CategoriaModel categoria = categoriaService.findByNome(corredorDto.categoria());
 
         corredorRepository.save(CorredorModel.builder()
                         .categoria(categoria)

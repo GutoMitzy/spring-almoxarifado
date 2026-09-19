@@ -43,7 +43,7 @@ public class EntradaEstoqueModel {
     private List<ItemTransporteModel> itens;
 
     public EntradaEstoqueModel(EntradaEstoqueDto data, EmpresaModel fornecedor, List<ItemTransporteModel> itens) {
-        this.dataPrevisao = data.getPrevisaoEntrega();
+        this.dataPrevisao = data.previsaoEntrega();
         this.dataRegistro = LocalDate.now();
         this.valorTotal = itens.stream()
                 .map(item -> item.getItem().getPrecoUnitario()

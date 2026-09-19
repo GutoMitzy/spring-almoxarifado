@@ -46,11 +46,11 @@ public class EmpresaModel implements UserDetails {
     private Set<RoleModel> roles = new HashSet<>();
 
     public EmpresaModel(EmpresaDto empresaDto) {
-        this.nome = empresaDto.getNome();
-        this.email = empresaDto.getEmail();
-        this.telefone = empresaDto.getTelefone();
-        this.endereco = empresaDto.getEndereco();
-        this.tipo = empresaDto.getTipo();
+        this.nome = empresaDto.nome();
+        this.email = empresaDto.email();
+        this.telefone = empresaDto.telefone();
+        this.endereco = empresaDto.endereco();
+        this.tipo = empresaDto.tipo();
     }
 
     @Override

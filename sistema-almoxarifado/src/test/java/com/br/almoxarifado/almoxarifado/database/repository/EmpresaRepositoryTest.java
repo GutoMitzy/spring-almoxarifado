@@ -24,7 +24,7 @@ class EmpresaRepositoryTest {
     @DisplayName("Should get Empresa successfulliy from DB")
     void findEmpresaByNomeSuccess() {
         String nome = "Augusto";
-        EmpresaDto empresaDto = new EmpresaDto(nome, "a@a.com", "9 999", "Rua X", "LTDA");
+        EmpresaDto empresaDto = new EmpresaDto(nome, "a@a.com", "9 999", "Rua X", "LTDA", "Eletrônica");
         this.createEmpresa(empresaDto);
 
         Optional<EmpresaModel> empresa = this.empresaRepository.findByNome(nome);

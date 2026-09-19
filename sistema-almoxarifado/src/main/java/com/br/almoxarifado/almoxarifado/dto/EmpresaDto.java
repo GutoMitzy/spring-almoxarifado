@@ -4,24 +4,14 @@ import com.br.almoxarifado.almoxarifado.database.model.EmpresaModel;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class EmpresaDto {
-    @NotBlank
-    private String nome;
-    @NotBlank
-    private String email;
-    @NotBlank
-    private String telefone;
-    @NotBlank
-    private String endereco;
-    @NotBlank
-    private String tipo;
-    @NotBlank
-    private String segmento;
+public record EmpresaDto (@NotBlank String nome,
+                          @NotBlank String email,
+                          @NotBlank String telefone,
+                          @NotBlank String endereco,
+                          @NotBlank String tipo,
+                          @NotBlank String segmento){
+
 
     public static EmpresaDto toDto(EmpresaModel empresa) {
         return new EmpresaDto(

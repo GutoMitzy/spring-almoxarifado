@@ -10,23 +10,14 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ItemDto {
-    @NotBlank
-    private String nome;
-    private String descricao;
-    @NotBlank
-    private String categoria;
-    @NotNull
-    private Integer quantidade;
-    @Enumerated(EnumType.STRING)
-    private ItemStatusEnum status;
-    @NotNull
-    private BigDecimal precoUnitario;
+public record ItemDto (@NotBlank String nome,
+                       String descricao,
+                       @NotBlank String categoria,
+                       @NotNull Integer quantidade,
+                       @Enumerated(EnumType.STRING) ItemStatusEnum status,
+                       @NotNull BigDecimal precoUnitario){
+
 
     public static ItemDto toDto(ItemModel item) {
         return new ItemDto(

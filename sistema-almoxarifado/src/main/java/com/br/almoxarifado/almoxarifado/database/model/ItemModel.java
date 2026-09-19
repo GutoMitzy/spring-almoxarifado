@@ -38,10 +38,10 @@ public class ItemModel {
     private CategoriaModel categoria;
 
     public ItemModel(ItemDto data, CategoriaModel categoria) {
-        this.nome = data.getNome();
-        this.descricao = data.getDescricao();
+        this.nome = data.nome();
+        this.descricao = data.descricao();
         this.categoria = categoria;
-        this.precoUnitario = data.getPrecoUnitario();
+        this.precoUnitario = data.precoUnitario();
     }
 
 }

@@ -9,18 +9,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class SaidaEstoqueDto {
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate previsaoEntrega;
+public record SaidaEstoqueDto (@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate previsaoEntrega,
+                               @NotBlank String cliente,
+                               @NotNull List<ItemMovimentacaoDto> itens){
 
-    @NotBlank
-    private String cliente;
-
-    @NotNull
-    private List<ItemMovimentacaoDto> itens;
 }

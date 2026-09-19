@@ -4,14 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class ItemMovimentacaoDto {
-    @NotNull
-    private Integer quantidade;
-    @NotBlank
-    private String nome;
+public record ItemMovimentacaoDto (@NotNull Integer quantidade,
+                                   @NotBlank String nome){
+
 }

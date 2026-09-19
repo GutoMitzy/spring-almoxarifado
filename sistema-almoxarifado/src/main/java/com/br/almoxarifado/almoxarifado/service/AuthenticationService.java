@@ -36,7 +36,7 @@ public class AuthenticationService {
     private long expirationTime;
 
     public void registerAccount(RegisterRequestDto dto) throws BadRequestException {
-        EmpresaModel empresa = empresaRepository.findByNome(dto.getNome())
+        EmpresaModel empresa = empresaRepository.findByNome(dto.nome())
                 .orElse(null);
 
         if(empresa != null){
@@ -50,19 +50,19 @@ public class AuthenticationService {
                 ));
 
         empresaRepository.save(EmpresaModel.builder()
-                .nome(dto.getNome())
-                .email(dto.getEmail())
-                .endereco(dto.getEndereco())
-                .telefone(dto.getTelefone())
-                .tipo(dto.getTipo())
+                .nome(dto.nome())
+                .email(dto.email())
+                .endereco(dto.endereco())
+                .telefone(dto.telefone())
+                .tipo(dto.tipo())
                 .roles(Set.of(role))
-                .senha(passwordEncoder.encode(dto.getSenha()))
+                .senha(passwordEncoder.encode(dto.senha()))
                 .build());
     }
 
     public TokenResponseDto loginAccount(LoginRequestDto loginRequestDto) throws BadRequestException {
         try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken((loginRequestDto.getNome()), loginRequestDto.getSenha()));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken((loginRequestDto.nome()), loginRequestDto.senha()));
             String token = tokenProvider.gerarToken(authentication);
             return new TokenResponseDto(token, expirationTime);
         } catch(BadCredentialsException bce)  {

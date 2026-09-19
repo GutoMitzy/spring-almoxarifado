@@ -22,8 +22,8 @@ public class CategoriaModel {
     private String descricao;
 
     public CategoriaModel(CategoriaDto data) {
-        this.nome = data.getNome();
-        this.descricao = data.getDescricao();
+        this.nome = data.nome();
+        this.descricao = data.descricao();
     }
 
     public CategoriaModel(String nome, String descricao) {

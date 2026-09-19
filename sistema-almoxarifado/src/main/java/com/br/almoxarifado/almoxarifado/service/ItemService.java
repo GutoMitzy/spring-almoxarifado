@@ -27,7 +27,7 @@ public class ItemService {
 
     @Transactional(rollbackOn =  Exception.class)
     public void createItem(ItemDto data) {
-        CategoriaModel categoria = categoriaService.findByNome(data.getCategoria());
+        CategoriaModel categoria = categoriaService.findByNome(data.categoria());
         ItemModel item = new ItemModel(data, categoria);
 
         itemRepository.save(item);

@@ -30,15 +30,15 @@ public class EstoqueService {
 
     @Transactional(rollbackOn = Exception.class)
     public void createEntradaEstoque(EntradaEstoqueDto entradaEstoqueDto) {
-        EmpresaModel fornecedor = empresaService.findByNome(entradaEstoqueDto.getFornecedor());
+        EmpresaModel fornecedor = empresaService.findByNome(entradaEstoqueDto.fornecedor());
         List<ItemTransporteModel> itens = new ArrayList<>();
 
-        for(ItemMovimentacaoDto itemDto : entradaEstoqueDto.getItens()) {
-            ItemModel item = itemRepository.findByNome(itemDto.getNome())
+        for(ItemMovimentacaoDto itemDto : entradaEstoqueDto.itens()) {
+            ItemModel item = itemRepository.findByNome(itemDto.nome())
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
             ItemTransporteModel entradaItem = ItemTransporteModel.builder()
                     .item(item)
-                    .quantidade(itemDto.getQuantidade())
+                    .quantidade(itemDto.quantidade())
                     .build();
 
             itemTransporteRepository.save(entradaItem);
@@ -50,7 +50,7 @@ public class EstoqueService {
 
         notificationService.sendNotification(NotificationDto.builder()
                 .titulo("CADASTRO")
-                .mensagem(String.format("Nova entrada de estoque de %s para %s.", fornecedor.getNome(), entradaEstoqueDto.getPrevisaoEntrega()))
+                .mensagem(String.format("Nova entrada de estoque de %s para %s.", fornecedor.getNome(), entradaEstoqueDto.previsaoEntrega()))
                 .type(NotificationTypeEnum.INFORMATIVA.name())
                 .lido(false)
                 .dataEmissao(LocalDate.now())
@@ -84,16 +84,16 @@ public class EstoqueService {
 
     @Transactional(rollbackOn = Exception.class)
     public void createSaidaEstoque(SaidaEstoqueDto saidaEstoqueDto) {
-        EmpresaModel cliente = empresaService.findByNome(saidaEstoqueDto.getCliente());
+        EmpresaModel cliente = empresaService.findByNome(saidaEstoqueDto.cliente());
         List<ItemTransporteModel> itens = new ArrayList<>();
 
-        for(ItemMovimentacaoDto itemDto : saidaEstoqueDto.getItens()) {
-            ItemModel item = itemRepository.findByNome(itemDto.getNome())
+        for(ItemMovimentacaoDto itemDto : saidaEstoqueDto.itens()) {
+            ItemModel item = itemRepository.findByNome(itemDto.nome())
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
 
             ItemTransporteModel saidaItem = ItemTransporteModel.builder()
                     .item(item)
-                    .quantidade(itemDto.getQuantidade())
+                    .quantidade(itemDto.quantidade())
                     .build();
 
             Integer quantidadeEnviada = saidaItem.getQuantidade();
