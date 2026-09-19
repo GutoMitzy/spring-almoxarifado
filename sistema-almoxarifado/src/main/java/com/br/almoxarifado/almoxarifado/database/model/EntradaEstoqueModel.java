@@ -4,6 +4,7 @@ import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,7 +24,6 @@ public class EntradaEstoqueModel {
 
     @Column(nullable = false)
     private LocalDate dataRegistro;
-
     private LocalDate dataConclusao;
     private LocalDate dataPrevisao;
 
@@ -43,6 +43,8 @@ public class EntradaEstoqueModel {
     private List<ItemTransporteModel> itens;
 
     public EntradaEstoqueModel(EntradaEstoqueDto data, EmpresaModel fornecedor, List<ItemTransporteModel> itens) {
+        this.dataPrevisao = data.getPrevisaoEntrega();
+        this.dataRegistro = LocalDate.now();
         this.valorTotal = itens.stream()
                 .map(item -> item.getItem().getPrecoUnitario()
                         .multiply(BigDecimal.valueOf(item.getQuantidade())))

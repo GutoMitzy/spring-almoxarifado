@@ -28,7 +28,8 @@ public class ItemModel {
     @Column(nullable = false)
     private Integer quantidade = 0;
     @Column(nullable = false)
-    private String status = ItemStatusEnum.ESGOTADO.name();
+    @Enumerated(EnumType.STRING)
+    private ItemStatusEnum status = ItemStatusEnum.ESGOTADO;
     @Column(nullable = false)
     private BigDecimal precoUnitario;
 
@@ -43,27 +44,4 @@ public class ItemModel {
         this.precoUnitario = data.getPrecoUnitario();
     }
 
-    public void addQuantidade(Integer quantidade) {
-        this.quantidade += quantidade;
-        updateStatus();
-    }
-
-    public void subtractQuantidade(Integer quantidade) {
-        if(quantidade > this.quantidade) {
-            throw new BadRequestException("Não há estoque suficiente para a saída!");
-        }
-
-        this.quantidade -= quantidade;
-        updateStatus();
-    }
-
-    public void updateStatus() {
-        if(this.quantidade >= 50) {
-            this.status = ItemStatusEnum.DISPONIVEL.name();
-        } else if(this.quantidade < 50) {
-            this.status = ItemStatusEnum.BAIXO_ESTOQUE.name();
-        } else {
-            this.status = ItemStatusEnum.ESGOTADO.name();
-        }
-    }
 }

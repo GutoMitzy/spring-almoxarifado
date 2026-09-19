@@ -20,10 +20,12 @@ public class EmpresaDto {
     private String endereco;
     @NotBlank
     private String tipo;
+    @NotBlank
+    private String segmento;
 
     public static EmpresaDto toDto(EmpresaModel empresa) {
         return new EmpresaDto(
-                empresa.getNome(), empresa.getEmail(), empresa.getTelefone(), empresa.getEndereco(), empresa.getTipo()
+                empresa.getNome(), empresa.getEmail(), empresa.getTelefone(), empresa.getEndereco(), empresa.getTipo(), empresa.getSegmento()
         );
     }
 }

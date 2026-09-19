@@ -34,6 +34,7 @@ public class EmpresaModel implements UserDetails {
     private String endereco;
     @Column(nullable = false)
     private String tipo;
+    private String segmento;
     private String senha;
 
     @ManyToMany(fetch = FetchType.EAGER)

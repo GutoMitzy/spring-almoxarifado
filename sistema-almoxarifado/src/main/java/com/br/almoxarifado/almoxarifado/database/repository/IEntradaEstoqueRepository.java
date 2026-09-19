@@ -8,5 +8,5 @@ import java.time.LocalDate;
 
 @Repository
 public interface IEntradaEstoqueRepository extends JpaRepository<EntradaEstoqueModel, Integer> {
-    Integer countByDataRegistroEquals(LocalDate data);
+    Integer countByDataRegistroEquals(LocalDate dataRegistro);
 }

@@ -2,11 +2,9 @@ package com.br.almoxarifado.almoxarifado.service;
 
 import com.br.almoxarifado.almoxarifado.database.model.*;
 import com.br.almoxarifado.almoxarifado.database.repository.*;
-import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
-import com.br.almoxarifado.almoxarifado.dto.ItemMovimentacaoDto;
-import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
-import com.br.almoxarifado.almoxarifado.dto.StatisticsDto;
+import com.br.almoxarifado.almoxarifado.dto.*;
 import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
+import com.br.almoxarifado.almoxarifado.enums.NotificationTypeEnum;
 import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
 import jakarta.transaction.Transactional;
@@ -27,6 +25,8 @@ public class EstoqueService {
 
     private final EmpresaService empresaService;
     private final CorredorService corredorService;
+    private final ItemService itemService;
+    private final NotificationService notificationService;
 
     @Transactional(rollbackOn = Exception.class)
     public void createEntradaEstoque(EntradaEstoqueDto entradaEstoqueDto) {
@@ -47,6 +47,15 @@ public class EstoqueService {
         }
         EntradaEstoqueModel entrada = new EntradaEstoqueModel(entradaEstoqueDto, fornecedor, itens);
         entradaEstoqueRepository.save(entrada);
+
+        notificationService.sendNotification(NotificationDto.builder()
+                .titulo("CADASTRO")
+                .mensagem(String.format("Nova entrada de estoque de %s para %s.", fornecedor.getNome(), entradaEstoqueDto.getPrevisaoEntrega()))
+                .type(NotificationTypeEnum.INFORMATIVA.name())
+                .lido(false)
+                .dataEmissao(LocalDate.now())
+                .build()
+        );
     }
 
     @Transactional(rollbackOn = Exception.class)
@@ -63,7 +72,7 @@ public class EstoqueService {
                     .orElseThrow(() -> new NotFoundException("Item não encontrado!"));
 
             Integer quantidadeRecebida = entradaItem.getQuantidade();
-            item.addQuantidade(quantidadeRecebida);
+            itemService.addQuantidade(item, quantidadeRecebida);
             itemRepository.save(item);
 
             corredorService.addItemReceptaculo(entradaItem.getItem().getCategoria(), entradaItem.getItem(), quantidadeRecebida);
@@ -88,7 +97,7 @@ public class EstoqueService {
                     .build();
 
             Integer quantidadeEnviada = saidaItem.getQuantidade();
-            item.subtractQuantidade(quantidadeEnviada);
+            itemService.subtractQuantidade(item, quantidadeEnviada);
             itemRepository.save(item);
 
             corredorService.removeItemReceptaculo(saidaItem.getItem().getCategoria(), saidaItem.getItem(), quantidadeEnviada);
