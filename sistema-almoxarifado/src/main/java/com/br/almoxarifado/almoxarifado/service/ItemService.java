@@ -31,6 +31,15 @@ public class ItemService {
         ItemModel item = new ItemModel(data, categoria);
 
         itemRepository.save(item);
+
+        notificationService.sendNotification(NotificationDto.builder()
+                .titulo("CADASTRO")
+                .mensagem(String.format("Novo item cadastrado: %s (%s).", data.nome(), data.categoria()))
+                .type(NotificationTypeEnum.INFORMATIVA.name())
+                .lido(false)
+                .dataEmissao(LocalDate.now())
+                .build()
+        );
     }
 
     public void addQuantidade(ItemModel item, Integer quantidade) {

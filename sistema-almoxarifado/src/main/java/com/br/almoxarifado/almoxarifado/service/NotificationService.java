@@ -10,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -29,5 +31,9 @@ public class NotificationService {
     public void sendNotification(NotificationDto notificationDto) {
         notificationRepository.save(new NotificationModel(notificationDto));
         rabbitTemplate.convertAndSend(exchangeName, routingKey, notificationDto);
+    }
+
+    public Page<NotificationDto> getAllNotifications(Integer page, Integer size) {
+        return notificationRepository.findAllByOrderByDataEmissaoAsc(PageRequest.of(page, size)).map(NotificationDto::toDto);
     }
 }

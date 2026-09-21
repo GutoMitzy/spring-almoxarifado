@@ -2,13 +2,10 @@ package com.br.almoxarifado.almoxarifado.database.model;
 
 import com.br.almoxarifado.almoxarifado.dto.ItemDto;
 import com.br.almoxarifado.almoxarifado.enums.ItemStatusEnum;
-import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "itens")

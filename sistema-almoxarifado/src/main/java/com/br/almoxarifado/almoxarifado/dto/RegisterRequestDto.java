@@ -7,7 +7,9 @@ import lombok.*;
 public record RegisterRequestDto (@NotBlank String nome,
                                   @NotBlank String email,
                                   @NotBlank String telefone,
-                                  @NotBlank String endereco,
+                                  @NotBlank String cidade,
+                                  @NotBlank String uf,
+                                  @NotBlank String ddd,
                                   @NotBlank String tipo,
                                   @NotBlank String senha){
 

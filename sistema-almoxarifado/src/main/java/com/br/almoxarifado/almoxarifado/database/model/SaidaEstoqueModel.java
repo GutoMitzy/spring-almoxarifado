@@ -1,12 +1,8 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
-import com.br.almoxarifado.almoxarifado.dto.EmpresaDto;
-import com.br.almoxarifado.almoxarifado.dto.EntradaEstoqueDto;
 import com.br.almoxarifado.almoxarifado.dto.SaidaEstoqueDto;
-import com.br.almoxarifado.almoxarifado.enums.EntradaEstoqueStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,9 +22,6 @@ public class SaidaEstoqueModel {
 
     @Column(nullable = false)
     private LocalDate dataRegistro;
-
-    private LocalDate dataConclusao;
-    private LocalDate dataPrevisao;
 
     @Column(nullable = false)
     private BigDecimal valorTotal;

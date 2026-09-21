@@ -1,13 +1,11 @@
 package com.br.almoxarifado.almoxarifado.database.repository;
 
 import com.br.almoxarifado.almoxarifado.database.model.EmpresaModel;
-import com.br.almoxarifado.almoxarifado.dto.EmpresaDto;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
@@ -24,8 +22,8 @@ class EmpresaRepositoryTest {
     @DisplayName("Should get Empresa successfulliy from DB")
     void findEmpresaByNomeSuccess() {
         String nome = "Augusto";
-        EmpresaDto empresaDto = new EmpresaDto(nome, "a@a.com", "9 999", "Rua X", "LTDA", "Eletrônica");
-        this.createEmpresa(empresaDto);
+        EmpresaCreateDto empresaCreateDto = new EmpresaCreateDto(nome, "a@a.com", "9 999", "Rua X", "LTDA", "Eletrônica");
+        this.createEmpresa(empresaCreateDto);
 
         Optional<EmpresaModel> empresa = this.empresaRepository.findByNome(nome);
         assertThat(empresa.isPresent()).isTrue();
@@ -40,8 +38,8 @@ class EmpresaRepositoryTest {
         assertThat(empresa.isEmpty()).isTrue();
     }
 
-    private EmpresaModel createEmpresa(EmpresaDto empresaDto) {
-        EmpresaModel empresa = new EmpresaModel(empresaDto);
+    private EmpresaModel createEmpresa(EmpresaCreateDto empresaCreateDto) {
+        EmpresaModel empresa = new EmpresaModel(empresaCreateDto);
         entityManager.persist(empresa);
         return empresa;
     }

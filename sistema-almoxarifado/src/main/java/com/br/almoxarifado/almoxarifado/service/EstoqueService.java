@@ -9,6 +9,8 @@ import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -63,7 +65,7 @@ public class EstoqueService {
         EntradaEstoqueModel entrada =  entradaEstoqueRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Entrada de estoque não encontrada!"));
 
-        if(entrada.getStatus().equals(EntradaEstoqueStatusEnum.RECEBIDA)) {
+        if(entrada.getStatus().equals(EntradaEstoqueStatusEnum.RECEBIDO)) {
             throw new BadRequestException("Entrada já concluida!");
         }
 
@@ -78,8 +80,17 @@ public class EstoqueService {
             corredorService.addItemReceptaculo(entradaItem.getItem().getCategoria(), entradaItem.getItem(), quantidadeRecebida);
         }
 
-        entrada.setStatus(EntradaEstoqueStatusEnum.RECEBIDA);
+        entrada.setStatus(EntradaEstoqueStatusEnum.RECEBIDO);
         entradaEstoqueRepository.save(entrada);
+
+        notificationService.sendNotification(NotificationDto.builder()
+                .titulo("INVENTÁRIO")
+                .mensagem(String.format("Entrada de estoque concluída: Empresa %s, Previsão: %s.", entrada.getEmpresa().getNome(), entrada.getDataPrevisao()))
+                .type(NotificationTypeEnum.INFORMATIVA.name())
+                .lido(false)
+                .dataEmissao(LocalDate.now())
+                .build()
+        );
     }
 
     @Transactional(rollbackOn = Exception.class)
@@ -105,8 +116,21 @@ public class EstoqueService {
             itemTransporteRepository.save(saidaItem);
             itens.add(saidaItem);
         }
-        SaidaEstoqueModel entrada = new SaidaEstoqueModel(saidaEstoqueDto, cliente, itens);
-        saidaEstoqueRepository.save(entrada);
+        SaidaEstoqueModel saida = new SaidaEstoqueModel(saidaEstoqueDto, cliente, itens);
+        saidaEstoqueRepository.save(saida);
+
+        notificationService.sendNotification(NotificationDto.builder()
+                .titulo("INVENTÁRIO")
+                .mensagem(String.format("Nova saída de estoque para %s.", saida.getEmpresa().getNome()))
+                .type(NotificationTypeEnum.INFORMATIVA.name())
+                .lido(false)
+                .dataEmissao(LocalDate.now())
+                .build()
+        );
+    }
+
+    public Page<MovimentacaoEntradaDto> getAllEntradasPage(Integer page, Integer size) {
+        return entradaEstoqueRepository.findAll(PageRequest.of(page, size)).map(MovimentacaoEntradaDto::toDto);
     }
 
     public StatisticsDto getTodayStatistics() {

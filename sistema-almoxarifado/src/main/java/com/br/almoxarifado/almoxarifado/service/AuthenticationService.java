@@ -6,8 +6,10 @@ import com.br.almoxarifado.almoxarifado.database.model.RoleModel;
 import com.br.almoxarifado.almoxarifado.database.repository.IEmpresaRepository;
 import com.br.almoxarifado.almoxarifado.database.repository.IRolesRepository;
 import com.br.almoxarifado.almoxarifado.dto.LoginRequestDto;
+import com.br.almoxarifado.almoxarifado.dto.NotificationDto;
 import com.br.almoxarifado.almoxarifado.dto.RegisterRequestDto;
 import com.br.almoxarifado.almoxarifado.dto.TokenResponseDto;
+import com.br.almoxarifado.almoxarifado.enums.NotificationTypeEnum;
 import com.br.almoxarifado.almoxarifado.enums.RolesEnum;
 import com.br.almoxarifado.almoxarifado.exception.BadRequestException;
 import com.br.almoxarifado.almoxarifado.exception.NotFoundException;
@@ -20,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Service
@@ -31,6 +34,8 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final TokenProvider tokenProvider;
+
+    private final NotificationService notificationService;
 
     @Value("${jwt.expiration}")
     private long expirationTime;
@@ -52,12 +57,24 @@ public class AuthenticationService {
         empresaRepository.save(EmpresaModel.builder()
                 .nome(dto.nome())
                 .email(dto.email())
-                .endereco(dto.endereco())
+                .cidade(dto.cidade())
+                .uf(dto.uf())
+                .ddd(dto.ddd())
                 .telefone(dto.telefone())
                 .tipo(dto.tipo())
+                .ativo(true)
                 .roles(Set.of(role))
                 .senha(passwordEncoder.encode(dto.senha()))
                 .build());
+
+        notificationService.sendNotification(NotificationDto.builder()
+                .titulo("CADASTRO")
+                .mensagem(String.format("Nova empresa registrada no sistema: %s.", dto.nome()))
+                .type(NotificationTypeEnum.INFORMATIVA.name())
+                .lido(false)
+                .dataEmissao(LocalDate.now())
+                .build()
+        );
     }
 
     public TokenResponseDto loginAccount(LoginRequestDto loginRequestDto) throws BadRequestException {

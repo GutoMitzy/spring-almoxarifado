@@ -1,6 +1,5 @@
 package com.br.almoxarifado.almoxarifado.database.model;
 
-import com.br.almoxarifado.almoxarifado.dto.EmpresaDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,10 +29,19 @@ public class EmpresaModel implements UserDetails {
     @Column(nullable = false)
     private String telefone;
     @Column(nullable = false)
-    private String endereco;
+    private String cidade;
+    @Column(nullable = false)
+    private String uf;
+    @Column(nullable = false)
+    private String ddd;
     @Column(nullable = false)
     private String tipo;
     private String segmento;
+    @Column(nullable = false)
+    private boolean ativo;
+
+
+    @Column(nullable = false)
     private String senha;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -44,14 +51,6 @@ public class EmpresaModel implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<RoleModel> roles = new HashSet<>();
-
-    public EmpresaModel(EmpresaDto empresaDto) {
-        this.nome = empresaDto.nome();
-        this.email = empresaDto.email();
-        this.telefone = empresaDto.telefone();
-        this.endereco = empresaDto.endereco();
-        this.tipo = empresaDto.tipo();
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

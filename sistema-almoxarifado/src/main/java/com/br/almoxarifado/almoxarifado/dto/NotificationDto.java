@@ -1,5 +1,6 @@
 package com.br.almoxarifado.almoxarifado.dto;
 
+import com.br.almoxarifado.almoxarifado.database.model.NotificationModel;
 import com.br.almoxarifado.almoxarifado.enums.NotificationTypeEnum;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,4 +20,10 @@ public record NotificationDto(@NotBlank String titulo,
                               @BooleanFlag Boolean lido,
                               @DateTimeFormat LocalDate dataEmissao
                               ) {
+
+    public static NotificationDto toDto(NotificationModel notification) {
+        return new NotificationDto(
+                notification.getTitulo(), notification.getMensagem(), notification.getType(), notification.getLido(), notification.getDataEmissao()
+        );
+    }
 }

@@ -1,7 +1,6 @@
 package com.br.almoxarifado.almoxarifado.controller;
 
-import com.br.almoxarifado.almoxarifado.database.model.EmpresaModel;
-import com.br.almoxarifado.almoxarifado.dto.EmpresaDto;
+import com.br.almoxarifado.almoxarifado.dto.EmpresaSendDto;
 import com.br.almoxarifado.almoxarifado.service.EmpresaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,16 +15,16 @@ public class EmpresaController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<EmpresaDto> findAllPage(@RequestParam(required = false) String nome,
-                                        @RequestParam Integer page,
-                                        @RequestParam Integer size) {
+    public Page<EmpresaSendDto> findAllPage(@RequestParam(required = false) String nome,
+                                            @RequestParam Integer page,
+                                            @RequestParam Integer size) {
         return empresaService.findByNomePage(nome, page, size);
     }
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public Page<EmpresaDto> findAllPage(@RequestParam(required = false, defaultValue = "0") Integer page,
-                                        @RequestParam(required = false, defaultValue = "10") Integer size) {
+    public Page<EmpresaSendDto> findAllPage(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                              @RequestParam(required = false, defaultValue = "10") Integer size) {
         return empresaService.findAllPage(page, size);
     }
 
